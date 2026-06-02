@@ -16,6 +16,7 @@ export default async function DashboardPage() {
           <span className="text-sm text-gray-500">{user?.email}</span>
           <a href="/courses" className="text-sm text-gray-700 hover:underline">Courses</a>
           <a href="/reviews" className="text-sm text-gray-700 hover:underline">Reviews</a>
+          <a href="/career" className="text-sm text-gray-700 hover:underline">Career</a>
           <form action={logout}>
             <button type="submit" className="text-sm text-red-500 hover:underline">Logout</button>
           </form>
