@@ -1,6 +1,7 @@
 import { createClient } from "@/lib/supabase/server";
 import { logout } from "@/app/login/actions";
 import AiSection from "./AiSection";
+import ScheduleBuilder from "./ScheduleBuilder";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -21,23 +22,16 @@ export default async function DashboardPage() {
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto p-6">
-        <h2 className="text-2xl font-bold mb-2">Your Schedule</h2>
-        <p className="text-gray-500 mb-6 text-sm">Select courses and let AI build your optimal schedule.</p>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          {courses?.map((course) => (
-            <div key={course.id} className="bg-white border rounded-xl p-4 flex justify-between items-start">
-              <div>
-                <p className="font-semibold text-sm">{course.name}</p>
-                <p className="text-xs text-gray-400 mt-1">{course.code} · {course.credits} credits · {course.campus}</p>
-                <p className="text-xs text-gray-400">{course.day_of_week} Period {course.period}</p>
-              </div>
-              <span className="text-xs bg-gray-100 px-2 py-1 rounded-full">{course.campus}</span>
-            </div>
-          ))}
+      <main className="max-w-4xl mx-auto p-6 space-y-6">
+        <div>
+          <h2 className="text-2xl font-bold mb-2">Your Schedule</h2>
+          <p className="text-gray-500 text-sm">Build your semester schedule with automatic conflict detection.</p>
         </div>
 
+        {/* Schedule Builder */}
+        <ScheduleBuilder courses={courses ?? []} />
+
+        {/* AI Section */}
         <AiSection />
       </main>
     </div>
