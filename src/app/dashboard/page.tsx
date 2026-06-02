@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { logout } from "@/app/login/actions";
+import AiSection from "./AiSection";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -43,21 +44,3 @@ export default async function DashboardPage() {
   );
 }
 
-function AiSection() {
-  return (
-    <div className="bg-white border rounded-xl p-6">
-      <h3 className="font-semibold mb-1">AI Schedule Suggestion</h3>
-      <p className="text-sm text-gray-500 mb-4">Describe your goals and let Claude suggest a schedule.</p>
-      <form action="/api/ai/schedule" method="POST" className="flex gap-2">
-        <input
-          name="goal"
-          placeholder="e.g. I want to focus on AI and avoid Omiya campus"
-          className="flex-1 border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black"
-        />
-        <button type="submit" className="bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition">
-          Ask AI
-        </button>
-      </form>
-    </div>
-  );
-}
