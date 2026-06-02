@@ -26,7 +26,7 @@ export default function CreateReviewModal({ courses, onClose, onSuccess }: Creat
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!courseId || !rating) {
-      setError("과목과 평점을 선택해주세요.");
+      setError("Please select a course and a rating.");
       return;
     }
 

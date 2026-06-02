@@ -2,34 +2,53 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { CURRENT_SEMESTER } from "./constants";
 
-export async function saveSchedule(formData: FormData) {
-  try {
-    const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return { error: "Please log in first." };
+async function getOrCreateSchedule(supabase: Awaited<ReturnType<typeof createClient>>, userId: string) {
+  const { data } = await supabase
+    .from("schedules")
+    .select("id, course_ids")
+    .eq("user_id", userId)
+    .eq("semester", CURRENT_SEMESTER)
+    .order("created_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
 
-    const semester = formData.get("semester") as string;
-    const courseIds = formData.getAll("courseIds") as string[];
+  if (data) return data;
 
-    if (!semester || courseIds.length === 0) {
-      return { error: "Please select a semester and at least one course." };
-    }
+  const { data: created } = await supabase
+    .from("schedules")
+    .insert({ user_id: userId, semester: CURRENT_SEMESTER, course_ids: [] })
+    .select("id, course_ids")
+    .single();
 
-    const { error } = await supabase.from("schedules").insert({
-      user_id: user.id,
-      semester,
-      course_ids: courseIds,
-    });
+  return created;
+}
 
-    if (error) {
-      return { error: error.message };
-    }
+export async function addCourse(courseId: string) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "Please log in first." };
 
-    revalidatePath("/dashboard");
-    return { message: "Schedule saved successfully!" };
-  } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "An error occurred.";
-    return { error: message };
-  }
+  const schedule = await getOrCreateSchedule(supabase, user.id);
+  if (!schedule) return { error: "Failed to access schedule." };
+
+  const newIds = [...new Set([...schedule.course_ids, courseId])];
+  await supabase.from("schedules").update({ course_ids: newIds }).eq("id", schedule.id);
+
+  revalidatePath("/dashboard");
+}
+
+export async function removeCourse(courseId: string) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "Please log in first." };
+
+  const schedule = await getOrCreateSchedule(supabase, user.id);
+  if (!schedule) return { error: "Failed to access schedule." };
+
+  const newIds = schedule.course_ids.filter((id: string) => id !== courseId);
+  await supabase.from("schedules").update({ course_ids: newIds }).eq("id", schedule.id);
+
+  revalidatePath("/dashboard");
 }

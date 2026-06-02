@@ -2,11 +2,23 @@ import { createClient } from "@/lib/supabase/server";
 import { logout } from "@/app/login/actions";
 import AiSection from "./AiSection";
 import ScheduleBuilder from "./ScheduleBuilder";
+import { CURRENT_SEMESTER } from "./constants";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
-  const { data: courses } = await supabase.from("courses").select("*").order("day_of_week");
+
+  const [{ data: courses }, { data: schedule }] = await Promise.all([
+    supabase.from("courses").select("id, code, name, credits, campus, day_of_week, period").order("code"),
+    supabase
+      .from("schedules")
+      .select("course_ids")
+      .eq("user_id", user?.id ?? "")
+      .eq("semester", CURRENT_SEMESTER)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle(),
+  ]);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -23,16 +35,14 @@ export default async function DashboardPage() {
         </div>
       </nav>
 
-      <main className="max-w-4xl mx-auto p-6 space-y-6">
+      <main className="max-w-5xl mx-auto p-6 space-y-6">
         <div>
-          <h2 className="text-2xl font-bold mb-2">Your Schedule</h2>
-          <p className="text-gray-500 text-sm">Build your semester schedule with automatic conflict detection.</p>
+          <h2 className="text-2xl font-bold mb-1">My Timetable</h2>
+          <p className="text-gray-500 text-sm">{CURRENT_SEMESTER}</p>
         </div>
 
-        {/* Schedule Builder */}
-        <ScheduleBuilder courses={courses ?? []} />
+        <ScheduleBuilder courses={courses ?? []} scheduledIds={schedule?.course_ids ?? []} />
 
-        {/* AI Section */}
         <AiSection />
       </main>
     </div>

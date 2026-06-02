@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { saveSchedule } from "@/app/dashboard/actions";
-
 interface Course {
   code: string;
   name: string;
@@ -27,29 +24,6 @@ interface RoadmapProps {
 }
 
 export default function Roadmap({ pathway, onBack }: RoadmapProps) {
-  const [savingIndex, setSavingIndex] = useState<number | null>(null);
-  const [savedMessage, setSavedMessage] = useState("");
-
-  async function handleSaveSemester(semesterIndex: number, semester: Semester) {
-    setSavingIndex(semesterIndex);
-
-    const formData = new FormData();
-    formData.append("semester", semester.semester);
-    semester.courses.forEach((course) => {
-      // We're using course codes, but ideally we'd map them to course IDs
-      formData.append("courseName", course.code);
-    });
-
-    const result = await saveSchedule(formData);
-
-    if (result?.message) {
-      setSavedMessage(`${semester.semester} saved!`);
-      setTimeout(() => setSavedMessage(""), 2000);
-    }
-
-    setSavingIndex(null);
-  }
-
   return (
     <div className="max-w-4xl mx-auto space-y-6">
       {/* Header */}
@@ -108,18 +82,6 @@ export default function Roadmap({ pathway, onBack }: RoadmapProps) {
               <span className="font-medium text-gray-900">Why:</span> {semester.rationale}
             </p>
 
-            {/* Save Button */}
-            <button
-              onClick={() => handleSaveSemester(idx, semester)}
-              disabled={savingIndex === idx}
-              className="w-full bg-black text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition disabled:opacity-50"
-            >
-              {savingIndex === idx ? "Saving..." : `Save ${semester.semester} to Schedule`}
-            </button>
-
-            {savedMessage && savingIndex === null && (
-              <p className="text-green-600 text-sm mt-2">✓ {savedMessage}</p>
-            )}
           </div>
         ))}
       </div>
