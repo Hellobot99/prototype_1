@@ -1,8 +1,8 @@
-import Anthropic from "@anthropic-ai/sdk";
+import Groq from "groq-sdk";
 import { createClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function POST(request: Request) {
   try {
@@ -13,32 +13,55 @@ export async function POST(request: Request) {
     const body = await request.json();
     const goal = body?.goal ?? "";
 
-    const { data: courses } = await supabase.from("courses").select("*");
+    const [{ data: courses }, { data: completed }] = await Promise.all([
+      supabase.from("courses").select("*"),
+      supabase.from("completed_courses").select("course_id").eq("user_id", user.id),
+    ]);
 
-    const courseList = courses && courses.length > 0
-      ? courses.map((c) => `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week} P${c.period})`).join("\n")
-      : "No courses available in DB yet.";
+    const completedIds = new Set(completed?.map((c) => c.course_id) ?? []);
+    const available = (courses ?? []).filter((c) => !completedIds.has(c.id));
+    const completedCourses = (courses ?? []).filter((c) => completedIds.has(c.id));
 
-    const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+    const courseList = available.length > 0
+      ? available.map((c) => `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week} P${c.period})`).join("\n")
+      : "No courses available.";
+
+    const completedList = completedCourses.length > 0
+      ? completedCourses.map((c) => `${c.code}: ${c.name}`).join(", ")
+      : "None";
+
+    const completion = await groq.chat.completions.create({
+      model: "llama-3.3-70b-versatile",
       max_tokens: 1024,
       messages: [
         {
           role: "user",
           content: `You are a course scheduling assistant for Shibaura Institute of Technology (SIT).
 
-Available courses:
+Already completed courses (DO NOT recommend these):
+${completedList}
+
+Available courses to recommend:
 ${courseList}
 
 Student goal: ${goal}
 
-Suggest an optimal schedule. List recommended courses with brief reasoning. Keep it concise.`,
+Respond ONLY with valid JSON (no markdown):
+{
+  "suggestion": "Brief explanation of the recommended schedule (2-3 sentences)",
+  "recommended_codes": ["CODE1", "CODE2", "CODE3"]
+}
+
+Pick 5-8 courses from the AVAILABLE list that best fit the student's goal. Use the exact course codes from the list.`,
         },
       ],
     });
 
-    const suggestion = message.content[0].type === "text" ? message.content[0].text : "";
-    return NextResponse.json({ suggestion });
+    let text = completion.choices[0]?.message?.content ?? "";
+    text = text.replace(/^```json\n?/, "").replace(/\n?```$/, "").trim();
+
+    const parsed = JSON.parse(text);
+    return NextResponse.json(parsed);
   } catch (err: unknown) {
     console.error("[AI route error]", err);
     const message = err instanceof Error ? err.message : "Unknown error";
