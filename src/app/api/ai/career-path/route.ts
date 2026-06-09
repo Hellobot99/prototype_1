@@ -12,6 +12,7 @@ export async function POST(request: Request) {
 
     const body = await request.json();
     const goal = body?.goal ?? "";
+    if (!goal) return NextResponse.json({ error: "Career goal is required" }, { status: 400 });
 
     const [{ data: courses }, { data: completed }] = await Promise.all([
       supabase.from("courses").select("*"),
@@ -22,9 +23,9 @@ export async function POST(request: Request) {
     const available = (courses ?? []).filter((c) => !completedIds.has(c.id));
     const completedCourses = (courses ?? []).filter((c) => completedIds.has(c.id));
 
-    const courseList = available.length > 0
-      ? available.map((c) => `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week} P${c.period})`).join("\n")
-      : "No courses available.";
+    const courseList = available
+      .map((c) => `${c.code}: ${c.name} (${c.credits}cr, ${c.campus})`)
+      .join("\n");
 
     const completedList = completedCourses.length > 0
       ? completedCourses.map((c) => `${c.code}: ${c.name}`).join(", ")
@@ -33,37 +34,41 @@ export async function POST(request: Request) {
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
       max_tokens: 1024,
-      messages: [
-        {
-          role: "user",
-          content: `You are a course scheduling assistant for Shibaura Institute of Technology (SIT).
+      messages: [{
+        role: "user",
+        content: `You are an academic advisor at Shibaura Institute of Technology (SIT).
 
-Already completed courses (DO NOT recommend these):
+Target career: ${goal}
+
+Already completed (do not recommend):
 ${completedList}
 
-Available courses to recommend:
+Available courses:
 ${courseList}
 
-Student goal: ${goal}
+Recommend 8-10 courses most valuable for this career. Choose only from the available list above.
 
 Respond ONLY with valid JSON (no markdown):
 {
-  "suggestion": "Brief explanation of the recommended schedule (2-3 sentences)",
-  "recommended_codes": ["CODE1", "CODE2", "CODE3"]
-}
-
-Pick 5-8 courses from the AVAILABLE list that best fit the student's goal. Use the exact course codes from the list.`,
-        },
-      ],
+  "career_goal": "...",
+  "summary": "One sentence on why these courses fit the career.",
+  "recommendations": [
+    {
+      "code": "XXXX",
+      "name": "Course Name",
+      "credits": 2,
+      "reason": "One sentence on why this matters for the career."
+    }
+  ]
+}`,
+      }],
     });
 
     let text = completion.choices[0]?.message?.content ?? "";
     text = text.replace(/^```json\n?/, "").replace(/\n?```$/, "").trim();
-
-    const parsed = JSON.parse(text);
-    return NextResponse.json(parsed);
+    return NextResponse.json(JSON.parse(text));
   } catch (err: unknown) {
-    console.error("[AI route error]", err);
+    console.error("[Career path error]", err);
     const message = err instanceof Error ? err.message : "Unknown error";
     return NextResponse.json({ error: message }, { status: 500 });
   }

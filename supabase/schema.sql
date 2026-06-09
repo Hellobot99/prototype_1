@@ -7,6 +7,7 @@ create table courses (
   campus text check (campus in ('Toyosu', 'Omiya')),
   day_of_week text,
   period int,
+  koma_su int default 1,
   created_at timestamptz default now()
 );
 
