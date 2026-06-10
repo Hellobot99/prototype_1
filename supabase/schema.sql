@@ -22,9 +22,11 @@ create table schedules (
 );
 
 -- reviews: course ratings from students
+-- user_id is set to null (not deleted) when the account is removed,
+-- so reviews remain visible to other students anonymously.
 create table reviews (
   id uuid primary key default gen_random_uuid(),
-  user_id uuid references auth.users(id) on delete cascade,
+  user_id uuid references auth.users(id) on delete set null,
   course_id uuid references courses(id) on delete cascade,
   rating int check (rating between 1 and 5),
   comment text,

@@ -11,12 +11,13 @@ interface Course {
 
 interface CreateReviewModalProps {
   courses: Course[];
+  initialCourseId?: string;
   onClose: () => void;
   onSuccess?: () => void;
 }
 
-export default function CreateReviewModal({ courses, onClose, onSuccess }: CreateReviewModalProps) {
-  const [courseId, setCourseId] = useState("");
+export default function CreateReviewModal({ courses, initialCourseId, onClose, onSuccess }: CreateReviewModalProps) {
+  const [courseId, setCourseId] = useState(initialCourseId ?? "");
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);

@@ -15,7 +15,7 @@ export default async function NavBar() {
         <NavLinks />
       </div>
       <div className="flex items-center gap-4">
-        <span className="text-xs text-gray-400">{user.email}</span>
+        <a href="/profile" className="text-xs text-gray-400 hover:text-gray-700 transition-colors">{user.email}</a>
         <form action={logout}>
           <button type="submit" className="text-xs text-red-400 hover:text-red-600 transition-colors">
             Logout

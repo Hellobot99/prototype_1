@@ -425,6 +425,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
       {showModal && (
         <CreateReviewModal
           courses={coursesForModal}
+          initialCourseId={selectedCourseId}
           onClose={() => { setShowModal(false); setSelectedCourseId(""); }}
           onSuccess={() => {}}
         />
