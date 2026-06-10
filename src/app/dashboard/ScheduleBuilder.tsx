@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import { addCourse, removeCourse } from "./actions";
 import AiSection from "./AiSection";
+import { validateSchedule } from "@/lib/scheduling/validator";
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const PERIODS = [1, 2, 3, 4, 5, 6];
@@ -105,6 +106,24 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const availableCourses = courses.filter((c) => !scheduledIds.includes(c.id));
   const totalCredits = scheduledCourses.reduce((s, c) => s + c.credits, 0);
 
+  const conflicts = validateSchedule(scheduledIds, courses);
+  const campusErrors = conflicts.filter((c) => c.type === "campus_conflict" && c.severity === "error");
+  const campusWarnings = conflicts.filter((c) => c.type === "campus_conflict" && c.severity === "warning");
+  // each conflict is reported from both courses' perspectives, so de-dupe pairs for display
+  const dedupe = (list: typeof conflicts) => {
+    const seen = new Set<string>();
+    const result: typeof conflicts = [];
+    for (const c of list) {
+      const key = [c.courseId, c.conflictingCourseId].sort().join("|");
+      if (seen.has(key)) continue;
+      seen.add(key);
+      result.push(c);
+    }
+    return result;
+  };
+  const campusErrorsUnique = dedupe(campusErrors);
+  const campusWarningsUnique = dedupe(campusWarnings);
+
   // courses that START at this cell
   const getStartingCourses = (day: string, period: number) =>
     scheduledCourses.filter((c) => c.day_of_week === day && c.period === period);
@@ -143,6 +162,22 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
 
       {/* ── LEFT: Timetable (65%) ── */}
       <div className="flex-[13] min-w-0 space-y-3">
+        {(campusErrorsUnique.length > 0 || campusWarningsUnique.length > 0) && (
+          <div className="space-y-2">
+            {campusErrorsUnique.map((c) => (
+              <div key={`${c.courseId}-${c.conflictingCourseId}`} className="bg-red-50 border border-red-200 text-red-700 text-xs rounded-lg px-3 py-2">
+                <span className="font-semibold">{c.courseName}</span> ↔{" "}
+                <span className="font-semibold">{c.conflictingCourseName}</span>: {c.message}
+              </div>
+            ))}
+            {campusWarningsUnique.map((c) => (
+              <div key={`${c.courseId}-${c.conflictingCourseId}`} className="bg-yellow-50 border border-yellow-200 text-yellow-700 text-xs rounded-lg px-3 py-2">
+                <span className="font-semibold">{c.courseName}</span> ↔{" "}
+                <span className="font-semibold">{c.conflictingCourseName}</span>: {c.message}
+              </div>
+            ))}
+          </div>
+        )}
         <div className="bg-white border rounded-xl p-4 overflow-x-auto">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-bold text-base">Timetable</h3>
@@ -188,7 +223,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                       style={{ minWidth: 80 }}
                     >
                       {starting.map((course) => (
-                        <div key={course.id} className={`mb-1 p-1 rounded leading-tight ${conflict ? "bg-red-100" : "bg-blue-50"}`}>
+                        <div key={course.id} className={`p-1 rounded leading-tight ${conflict ? "mb-1 bg-red-100" : "h-full bg-blue-50"}`}>
                           <div className="flex items-start justify-between gap-0.5">
                             <div className="min-w-0 flex-1">
                               <p className="font-bold text-gray-800 truncate">{course.code}</p>
@@ -292,7 +327,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                             style={{ minWidth: 70 }}
                           >
                             {course && (
-                              <div className="bg-purple-100 rounded p-1 leading-tight">
+                              <div className="bg-purple-100 rounded p-1 leading-tight h-full">
                                 <p className="font-bold text-purple-800 truncate text-xs">{course.code}</p>
                                 <p className="text-purple-600 truncate" style={{ fontSize: 9 }}>{course.name}</p>
                                 {(course.koma_su ?? 1) > 1 && (
@@ -323,7 +358,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
       <div className="flex-[7] min-w-0 space-y-3 sticky top-4">
 
         {/* Course Search */}
-        <div className="bg-white border rounded-xl overflow-hidden">
+        <div className="bg-white border rounded-xl overflow-visible">
           <div className="p-4 border-b">
             <h3 className="font-bold text-sm mb-3">Add Courses</h3>
             <input

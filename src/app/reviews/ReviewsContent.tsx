@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import CreateReviewModal from "./CreateReviewModal";
 
 interface Review {
@@ -76,8 +76,8 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
 
   const allReviews = reviews ?? [];
 
-  // Shuffle once on mount for random feed
-  const shuffled = useMemo(() => shuffle(allReviews), []);
+  const [shuffled, setShuffled] = useState<Review[]>(allReviews);
+  useEffect(() => { setShuffled(shuffle(allReviews)); }, []);
 
   const displayReviews = selectedCourse
     ? allReviews.filter((r) => r.courses?.id === selectedCourse.id)

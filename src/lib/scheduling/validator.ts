@@ -17,7 +17,8 @@ interface ValidationResult {
   conflictingCourseName?: string;
 }
 
-const TRANSIT_TIME_MINUTES = 30;
+// Approximate one-way commute time between the Toyosu and Omiya campuses.
+const TRANSIT_TIME_MINUTES = 90;
 
 export function validateSchedule(
   selectedCourseIds: string[],
@@ -70,18 +71,47 @@ export function validateSchedule(
             course2.campus &&
             course1.campus !== course2.campus
           ) {
-            // Different campuses on same day - warn if not enough buffer
+            // Different campuses on the same day - each period is ~90min,
+            // so a 1-period gap (~90min) is not enough to physically
+            // travel between Toyosu and Omiya.
             const periodDifference = Math.abs(course1.period - course2.period);
-            if (periodDifference < 2) {
-              // Assume each period is ~50min, so less than 2 periods = less than 1.5 hours
+            if (periodDifference <= 1) {
+              conflicts.push({
+                courseId: course1.id,
+                courseName: `${course1.code} - ${course1.name}`,
+                type: "campus_conflict",
+                severity: "error",
+                message: `Impossible: ${course2.code} is at the ${course2.campus} campus, but campus transit takes ~${TRANSIT_TIME_MINUTES}min`,
+                conflictingCourseId: course2.id,
+                conflictingCourseName: `${course2.code} - ${course2.name}`,
+              });
+              conflicts.push({
+                courseId: course2.id,
+                courseName: `${course2.code} - ${course2.name}`,
+                type: "campus_conflict",
+                severity: "error",
+                message: `Impossible: ${course1.code} is at the ${course1.campus} campus, but campus transit takes ~${TRANSIT_TIME_MINUTES}min`,
+                conflictingCourseId: course1.id,
+                conflictingCourseName: `${course1.code} - ${course1.name}`,
+              });
+            } else if (periodDifference === 2) {
               conflicts.push({
                 courseId: course1.id,
                 courseName: `${course1.code} - ${course1.name}`,
                 type: "campus_conflict",
                 severity: "warning",
-                message: `Campus switch warning: ${course2.code} is at ${course2.campus} (${TRANSIT_TIME_MINUTES}min travel needed)`,
+                message: `Tight schedule: ${course2.code} is at the ${course2.campus} campus (~${TRANSIT_TIME_MINUTES}min travel needed)`,
                 conflictingCourseId: course2.id,
                 conflictingCourseName: `${course2.code} - ${course2.name}`,
+              });
+              conflicts.push({
+                courseId: course2.id,
+                courseName: `${course2.code} - ${course2.name}`,
+                type: "campus_conflict",
+                severity: "warning",
+                message: `Tight schedule: ${course1.code} is at the ${course1.campus} campus (~${TRANSIT_TIME_MINUTES}min travel needed)`,
+                conflictingCourseId: course1.id,
+                conflictingCourseName: `${course1.code} - ${course1.name}`,
               });
             }
           }
