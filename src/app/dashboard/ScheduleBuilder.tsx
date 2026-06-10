@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { Fragment, useState, useTransition } from "react";
 import { addCourse, removeCourse } from "./actions";
 import AiSection from "./AiSection";
 import { validateSchedule } from "@/lib/scheduling/validator";
@@ -187,23 +187,22 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
               </span>
             )}
           </div>
-          <table className="w-full text-xs border-collapse" style={{ minWidth: 480 }}>
-          <thead>
-            <tr>
-              <th className="border border-gray-200 bg-gray-50 p-2 text-gray-400 font-normal w-8">Period</th>
-              {DAYS.map((d) => (
-                <th key={d} className="border border-gray-200 bg-gray-50 p-2 text-gray-700 font-semibold">
-                  {DAY_SHORT[d]}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
+          <div
+            className="grid w-full text-xs"
+            style={{ gridTemplateColumns: "2.5rem repeat(6, minmax(80px, 1fr))", minWidth: 480 }}
+          >
+            <div className="border border-gray-200 bg-gray-50 p-2 text-gray-400 font-normal text-center">Period</div>
+            {DAYS.map((d) => (
+              <div key={d} className="border border-gray-200 bg-gray-50 p-2 text-gray-700 font-semibold text-center">
+                {DAY_SHORT[d]}
+              </div>
+            ))}
+
             {PERIODS.map((period) => (
-              <tr key={period}>
-                <td className="border border-gray-200 bg-gray-50 p-1 text-center text-gray-400 font-medium">
+              <Fragment key={period}>
+                <div className="border border-gray-200 bg-gray-50 p-1 flex items-center justify-center text-center text-gray-400 font-medium">
                   {period}
-                </td>
+                </div>
                 {DAYS.map((day) => {
                   if (isCoveredBySpan(day, period)) return null;
 
@@ -216,14 +215,13 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                   const isHoverConflict = isHoverStart && starting.length > 0;
 
                   return (
-                    <td
+                    <div
                       key={day}
-                      rowSpan={span}
-                      className={`border border-gray-200 p-1 align-top relative ${conflict ? "bg-red-50" : "bg-white"}`}
-                      style={{ minWidth: 80 }}
+                      className={`border border-gray-200 p-1 relative ${conflict ? "bg-red-50" : "bg-white"}`}
+                      style={{ gridRow: `span ${span} / span ${span}` }}
                     >
                       {starting.map((course) => (
-                        <div key={course.id} className={`p-1 rounded leading-tight ${conflict ? "mb-1 bg-red-100" : "h-full bg-blue-50"}`}>
+                        <div key={course.id} className={`p-1 rounded leading-tight h-full ${conflict ? "mb-1 bg-red-100" : "bg-blue-50"}`}>
                           <div className="flex items-start justify-between gap-0.5">
                             <div className="min-w-0 flex-1">
                               <p className="font-bold text-gray-800 truncate">{course.code}</p>
@@ -257,13 +255,12 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                           )}
                         </div>
                       )}
-                    </td>
+                    </div>
                   );
                 })}
-              </tr>
+              </Fragment>
             ))}
-          </tbody>
-        </table>
+          </div>
           {scheduledCourses.length === 0 && (
             <p className="text-sm text-gray-400 text-center py-6">No courses yet — search and add from the right panel.</p>
           )}
@@ -300,48 +297,45 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
             </div>
             <div className="p-3 overflow-x-auto">
               <p className="text-xs text-gray-400 mb-2">{aiCourses.length} courses · {aiCredits} credits</p>
-              <table className="w-full text-xs border-collapse" style={{ minWidth: 480 }}>
-                <thead>
-                  <tr>
-                    <th className="border border-gray-200 bg-gray-50 p-1 text-gray-400 font-normal w-8 text-center">P</th>
-                    {DAYS.map((d) => (
-                      <th key={d} className="border border-gray-200 bg-gray-50 p-1 text-gray-600 font-medium text-center">
-                        {DAY_SHORT[d]}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {PERIODS.map((period) => (
-                    <tr key={period}>
-                      <td className="border border-gray-200 bg-gray-50 p-1 text-center text-gray-400">{period}</td>
-                      {DAYS.map((day) => {
-                        if (isAiCovered(day, period)) return null;
-                        const course = getAiCell(day, period);
-                        const span = course ? (course.koma_su ?? 1) : 1;
-                        return (
-                          <td
-                            key={day}
-                            rowSpan={span}
-                            className={`border border-gray-200 p-0.5 align-middle ${course ? "bg-purple-50" : "bg-white"}`}
-                            style={{ minWidth: 70 }}
-                          >
-                            {course && (
-                              <div className="bg-purple-100 rounded p-1 leading-tight h-full">
-                                <p className="font-bold text-purple-800 truncate text-xs">{course.code}</p>
-                                <p className="text-purple-600 truncate" style={{ fontSize: 9 }}>{course.name}</p>
-                                {(course.koma_su ?? 1) > 1 && (
-                                  <p className="text-purple-400" style={{ fontSize: 9 }}>P{course.period}–{(course.period ?? 0) + (course.koma_su ?? 1) - 1}</p>
-                                )}
-                              </div>
-                            )}
-                          </td>
-                        );
-                      })}
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              <div
+                className="grid w-full text-xs"
+                style={{ gridTemplateColumns: "1.75rem repeat(6, minmax(70px, 1fr))", minWidth: 480 }}
+              >
+                <div className="border border-gray-200 bg-gray-50 p-1 text-gray-400 font-normal text-center">P</div>
+                {DAYS.map((d) => (
+                  <div key={d} className="border border-gray-200 bg-gray-50 p-1 text-gray-600 font-medium text-center">
+                    {DAY_SHORT[d]}
+                  </div>
+                ))}
+
+                {PERIODS.map((period) => (
+                  <Fragment key={period}>
+                    <div className="border border-gray-200 bg-gray-50 p-1 flex items-center justify-center text-center text-gray-400">{period}</div>
+                    {DAYS.map((day) => {
+                      if (isAiCovered(day, period)) return null;
+                      const course = getAiCell(day, period);
+                      const span = course ? (course.koma_su ?? 1) : 1;
+                      return (
+                        <div
+                          key={day}
+                          className={`border border-gray-200 p-0.5 ${course ? "bg-purple-50" : "bg-white"}`}
+                          style={{ gridRow: `span ${span} / span ${span}` }}
+                        >
+                          {course && (
+                            <div className="bg-purple-100 rounded p-1 leading-tight h-full">
+                              <p className="font-bold text-purple-800 truncate text-xs">{course.code}</p>
+                              <p className="text-purple-600 truncate" style={{ fontSize: 9 }}>{course.name}</p>
+                              {(course.koma_su ?? 1) > 1 && (
+                                <p className="text-purple-400" style={{ fontSize: 9 }}>P{course.period}–{(course.period ?? 0) + (course.koma_su ?? 1) - 1}</p>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </Fragment>
+                ))}
+              </div>
               {aiUntimed.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1">
                   {aiUntimed.map((c) => (
