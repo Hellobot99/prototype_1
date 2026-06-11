@@ -94,10 +94,10 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
 
   return (
     <>
-      <div className="flex min-h-[calc(100vh-57px)]">
+      <div className="flex flex-col md:flex-row md:min-h-[calc(100vh-57px)]">
 
         {/* ── LEFT SIDEBAR ── */}
-        <div className="w-72 flex-shrink-0 border-r bg-white flex flex-col">
+        <div className="w-full md:w-72 md:flex-shrink-0 border-b md:border-b-0 md:border-r bg-white flex flex-col">
           {/* Search */}
           <div className="p-4 border-b">
             <div className="relative">
@@ -113,7 +113,7 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
           </div>
 
           {/* Course list or search results */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="max-h-72 md:max-h-none md:flex-1 overflow-y-auto">
             {search.trim().length === 0 ? (
               /* Default: courses that have reviews */
               <div>

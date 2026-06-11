@@ -158,10 +158,10 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   }
 
   return (
-    <div className="flex gap-4 items-start">
+    <div className="flex flex-col lg:flex-row gap-4 items-start">
 
       {/* ── LEFT: Timetable (65%) ── */}
-      <div className="flex-[13] min-w-0 space-y-3">
+      <div className="w-full lg:flex-[13] min-w-0 space-y-3">
         {(campusErrorsUnique.length > 0 || campusWarningsUnique.length > 0) && (
           <div className="space-y-2">
             {campusErrorsUnique.map((c) => (
@@ -349,7 +349,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
       </div>
 
       {/* ── RIGHT: Search + AI (35%) ── */}
-      <div className="flex-[7] min-w-0 space-y-3 sticky top-4">
+      <div className="w-full lg:flex-[7] min-w-0 space-y-3 lg:sticky lg:top-4">
 
         {/* Course Search */}
         <div className="bg-white border rounded-xl overflow-visible">

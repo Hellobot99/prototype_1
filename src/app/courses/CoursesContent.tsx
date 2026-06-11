@@ -218,7 +218,8 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
           </div>
 
           {/* Table */}
-          <table className="w-full text-sm">
+          <div className="overflow-x-auto">
+          <table className="w-full text-sm" style={{ minWidth: 640 }}>
             <thead className="bg-gray-50 border-b">
               <tr>
                 <th className="px-4 py-2.5 w-8"></th>
@@ -329,6 +330,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
               )}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
 
