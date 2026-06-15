@@ -41,6 +41,10 @@ const rows = data.map((item) => ({
   day_of_week: DAY_MAP[String(item.yobi_cd)] ?? null,
   period: item.jigen_cd && String(item.jigen_cd) !== "9" ? Number(item.jigen_cd) : null,
   koma_su: item.koma_su ?? 1,
+  description: item.description ?? null,
+  learning_goals: item.learning_goals ?? [],
+  prerequisites: item.prerequisites ?? [],
+  assessment: item.assessment ?? null,
 }));
 
 // Delete all existing courses
