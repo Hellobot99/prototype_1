@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Empty Turbopack config: `next build` uses Turbopack by default and
+  // otherwise errors when it sees a `webpack` config below (which only
+  // applies to `next dev --webpack`).
+  turbopack: {},
   webpack: (config, { dev }) => {
     // The persistent webpack filesystem cache occasionally gets corrupted
     // in dev mode (CSS chunks referenced in the manifest never get written
