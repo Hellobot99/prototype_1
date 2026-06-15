@@ -20,7 +20,6 @@ interface CompletedInfo { grade: string; semester: string; }
 interface CoursesContentProps {
   courses: Course[] | null;
   completedMap: Record<string, CompletedInfo>;
-  myReviews: Array<{ rating: number }>;
   scheduledIds: string[];
 }
 
@@ -67,7 +66,7 @@ function calcCredits(courses: Course[], completedMap: Record<string, CompletedIn
   }, 0);
 }
 
-export default function CoursesContent({ courses, completedMap, myReviews, scheduledIds }: CoursesContentProps) {
+export default function CoursesContent({ courses, completedMap, scheduledIds }: CoursesContentProps) {
   const [showModal, setShowModal] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [activeSem, setActiveSem] = useState<string>("all");
@@ -217,8 +216,8 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
             <span className="text-xs text-gray-400 ml-auto">{displayed.length} courses</span>
           </div>
 
-          {/* Table */}
-          <div className="overflow-x-auto">
+          {/* Table (desktop) */}
+          <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-sm" style={{ minWidth: 640 }}>
             <thead className="bg-gray-50 border-b">
               <tr>
@@ -330,6 +329,87 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
               )}
             </tbody>
           </table>
+          </div>
+
+          {/* Cards (mobile) */}
+          <div className="md:hidden divide-y divide-gray-50">
+            {displayed.length === 0 ? (
+              <p className="py-12 text-center text-gray-400 text-sm px-4">
+                {activeSem === "all" ? "No courses taken yet. Check courses below to add them." : "No courses recorded for this semester."}
+              </p>
+            ) : (
+              displayed.map((course) => {
+                const done = course.id in completedMap;
+                const info = completedMap[course.id];
+                const ratings = course.reviews?.map((r) => r.rating) ?? [];
+                const avg = ratings.length
+                  ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
+                  : null;
+
+                return (
+                  <div key={course.id} className={`px-4 py-3 ${done ? "bg-gray-50/40" : ""}`}>
+                    <div className="flex items-start gap-3">
+                      <button
+                        onClick={() => handleToggle(course.id)}
+                        disabled={isPending}
+                        className={`w-5 h-5 mt-0.5 rounded border-2 flex-shrink-0 flex items-center justify-center transition-all disabled:opacity-40 ${
+                          done ? "bg-black border-black text-white" : "border-gray-300 hover:border-gray-500"
+                        }`}
+                      >
+                        {done && <span className="text-xs leading-none">✓</span>}
+                      </button>
+                      <div className="min-w-0 flex-1">
+                        <p className={`text-sm font-medium ${done ? "text-gray-400" : "text-gray-900"}`}>{course.name}</p>
+                        <div className="flex items-center gap-2 mt-1 flex-wrap">
+                          <span className={`font-mono text-xs ${done ? "text-gray-300" : "text-gray-400"}`}>{course.code}</span>
+                          <span className={`text-xs ${done ? "text-gray-400" : "text-gray-700"}`}>{course.credits}cr</span>
+                          <span className={`px-2 py-0.5 rounded-full text-xs ${
+                            done ? "bg-gray-100 text-gray-400" :
+                            course.campus === "Toyosu" ? "bg-blue-50 text-blue-600" : "bg-green-50 text-green-600"
+                          }`}>
+                            {course.campus}
+                          </span>
+                          {avg && <span className="text-xs text-yellow-500">★ {avg}</span>}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => { setSelectedCourseId(course.id); setShowModal(true); }}
+                        className="text-xs text-gray-300 hover:text-blue-500 transition-colors flex-shrink-0"
+                      >
+                        Rate
+                      </button>
+                    </div>
+
+                    {done && (
+                      <div className="flex items-center gap-2 mt-2 pl-8">
+                        <select
+                          value={info?.semester ?? ""}
+                          onChange={(e) => handleField(course.id, "semester", e.target.value)}
+                          disabled={isPending}
+                          className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-black bg-white text-gray-700 disabled:opacity-50"
+                        >
+                          <option value="">Semester —</option>
+                          {SEMESTERS.map((s) => (
+                            <option key={s} value={s}>{s}</option>
+                          ))}
+                        </select>
+                        <select
+                          value={info?.grade ?? ""}
+                          onChange={(e) => handleField(course.id, "grade", e.target.value)}
+                          disabled={isPending}
+                          className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-black bg-white text-gray-700 disabled:opacity-50"
+                        >
+                          <option value="">Grade —</option>
+                          {GRADES.map((g) => (
+                            <option key={g} value={g}>{g}</option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
           </div>
         </div>
       </div>

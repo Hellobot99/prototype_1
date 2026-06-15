@@ -34,10 +34,22 @@ create table reviews (
   unique (user_id, course_id)
 );
 
+-- completed_courses: a student's taken courses, with grade/semester for GPA tracking
+create table completed_courses (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete cascade,
+  course_id uuid references courses(id) on delete cascade,
+  grade text,
+  semester text,
+  created_at timestamptz default now(),
+  unique (user_id, course_id)
+);
+
 -- RLS policies
 alter table courses enable row level security;
 alter table schedules enable row level security;
 alter table reviews enable row level security;
+alter table completed_courses enable row level security;
 
 create policy "courses are public" on courses for select using (true);
 
@@ -47,6 +59,10 @@ create policy "users manage own schedules" on schedules
 
 create policy "reviews are public" on reviews for select using (true);
 create policy "users manage own reviews" on reviews
+  for all using (auth.uid() = user_id)
+  with check (auth.uid() = user_id);
+
+create policy "users manage own completed courses" on completed_courses
   for all using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
 

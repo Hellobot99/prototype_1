@@ -131,7 +131,7 @@ export default function CareerForm() {
       {step === "careers" && careers.length > 0 && (
         <div>
           <p className="text-xs text-gray-400 mb-3 px-1">
-            {careers.length} careers related to <span className="font-medium text-gray-600">"{interest}"</span>
+            {careers.length} careers related to <span className="font-medium text-gray-600">&quot;{interest}&quot;</span>
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {careers.map((career) => (

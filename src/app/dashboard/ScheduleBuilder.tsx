@@ -85,6 +85,8 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const [filterPeriod, setFilterPeriod] = useState<FilterVal>("all");
   const [filterCredits, setFilterCredits] = useState<FilterVal>("all");
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
+  const todayIndex = new Date().getDay() - 1; // Mon=0 ... Sat=5, Sun=-1
+  const [mobileDay, setMobileDay] = useState<string>(DAYS[todayIndex] ?? "Monday");
   const [aiSuggestion, setAiSuggestion] = useState("");
   const [aiCodes, setAiCodes] = useState<string[]>([]);
   const [isPending, startTransition] = useTransition();
@@ -178,7 +180,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
             ))}
           </div>
         )}
-        <div className="bg-white border rounded-xl p-4 overflow-x-auto">
+        <div className="bg-white border rounded-xl p-2 sm:p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-bold text-base">Timetable</h3>
             {scheduledCourses.length > 0 && (
@@ -187,10 +189,62 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
               </span>
             )}
           </div>
-          <div
-            className="grid w-full text-xs"
-            style={{ gridTemplateColumns: "2.5rem repeat(6, minmax(80px, 1fr))", minWidth: 480 }}
-          >
+          {/* Mobile: day-by-day list view */}
+          <div className="sm:hidden">
+            <div className="flex gap-1 mb-2">
+              {DAYS.map((d) => (
+                <button
+                  key={d}
+                  onClick={() => setMobileDay(d)}
+                  className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition ${
+                    mobileDay === d ? "bg-black text-white" : "bg-gray-100 text-gray-600"
+                  }`}
+                >
+                  {DAY_SHORT[d]}
+                </button>
+              ))}
+            </div>
+            <div className="space-y-1.5">
+              {PERIODS.map((period) => {
+                if (isCoveredBySpan(mobileDay, period)) return null;
+                const starting = getStartingCourses(mobileDay, period);
+                const conflict = starting.length > 1;
+                const span = starting.length === 1 ? (starting[0].koma_su ?? 1) : 1;
+
+                return (
+                  <div key={period} className="flex items-stretch gap-2">
+                    <div className="w-10 flex-shrink-0 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400 font-medium">
+                      {span > 1 ? `${period}–${period + span - 1}` : period}
+                    </div>
+                    <div className={`flex-1 min-w-0 rounded-lg border px-2 py-1.5 ${
+                      conflict ? "border-red-200 bg-red-50" : starting.length ? "border-blue-100 bg-blue-50" : "border-gray-100 bg-white"
+                    }`}>
+                      {starting.length === 0 ? (
+                        <p className="text-xs text-gray-300">—</p>
+                      ) : (
+                        starting.map((course) => (
+                          <div key={course.id} className="flex items-center justify-between gap-2">
+                            <div className="min-w-0">
+                              <p className="text-sm font-semibold text-gray-800 truncate">{course.name}</p>
+                              <p className="text-xs text-gray-400">{course.code} · {course.campus}</p>
+                            </div>
+                            <button
+                              onClick={() => handleRemove(course.id)}
+                              disabled={isPending}
+                              className="text-red-400 hover:text-red-600 text-sm font-bold flex-shrink-0 disabled:opacity-40"
+                            >×</button>
+                          </div>
+                        ))
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Desktop: weekly grid view */}
+          <div className="hidden sm:grid w-full text-xs grid-cols-[2.5rem_repeat(6,minmax(80px,1fr))]">
             <div className="border border-gray-200 bg-gray-50 p-2 text-gray-400 font-normal text-center">Period</div>
             {DAYS.map((d) => (
               <div key={d} className="border border-gray-200 bg-gray-50 p-2 text-gray-700 font-semibold text-center">
@@ -295,12 +349,55 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
               </div>
               <button onClick={() => { setAiCodes([]); setAiSuggestion(""); }} className="text-gray-300 hover:text-gray-500 text-lg leading-none ml-3 flex-shrink-0">×</button>
             </div>
-            <div className="p-3 overflow-x-auto">
+            <div className="p-2 sm:p-3">
               <p className="text-xs text-gray-400 mb-2">{aiCourses.length} courses · {aiCredits} credits</p>
-              <div
-                className="grid w-full text-xs"
-                style={{ gridTemplateColumns: "1.75rem repeat(6, minmax(70px, 1fr))", minWidth: 480 }}
-              >
+
+              {/* Mobile: day-by-day list view */}
+              <div className="sm:hidden">
+                <div className="flex gap-1 mb-2">
+                  {DAYS.map((d) => (
+                    <button
+                      key={d}
+                      onClick={() => setMobileDay(d)}
+                      className={`flex-1 py-1.5 rounded-lg text-xs font-medium transition ${
+                        mobileDay === d ? "bg-black text-white" : "bg-gray-100 text-gray-600"
+                      }`}
+                    >
+                      {DAY_SHORT[d]}
+                    </button>
+                  ))}
+                </div>
+                <div className="space-y-1.5">
+                  {PERIODS.map((period) => {
+                    if (isAiCovered(mobileDay, period)) return null;
+                    const course = getAiCell(mobileDay, period);
+                    const span = course ? (course.koma_su ?? 1) : 1;
+
+                    return (
+                      <div key={period} className="flex items-stretch gap-2">
+                        <div className="w-10 flex-shrink-0 bg-gray-50 border border-gray-200 rounded-lg flex items-center justify-center text-xs text-gray-400 font-medium">
+                          {span > 1 ? `${period}–${period + span - 1}` : period}
+                        </div>
+                        <div className={`flex-1 min-w-0 rounded-lg border px-2 py-1.5 ${
+                          course ? "border-purple-100 bg-purple-50" : "border-gray-100 bg-white"
+                        }`}>
+                          {!course ? (
+                            <p className="text-xs text-gray-300">—</p>
+                          ) : (
+                            <div className="min-w-0">
+                              <p className="text-sm font-semibold text-purple-800 truncate">{course.name}</p>
+                              <p className="text-xs text-gray-400">{course.code} · {course.campus}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Desktop: weekly grid view */}
+              <div className="hidden sm:grid w-full text-xs grid-cols-[1.75rem_repeat(6,minmax(70px,1fr))]">
                 <div className="border border-gray-200 bg-gray-50 p-1 text-gray-400 font-normal text-center">P</div>
                 {DAYS.map((d) => (
                   <div key={d} className="border border-gray-200 bg-gray-50 p-1 text-gray-600 font-medium text-center">
@@ -336,6 +433,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                   </Fragment>
                 ))}
               </div>
+
               {aiUntimed.length > 0 && (
                 <div className="mt-2 flex flex-wrap gap-1">
                   {aiUntimed.map((c) => (

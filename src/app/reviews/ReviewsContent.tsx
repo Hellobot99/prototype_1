@@ -77,6 +77,10 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
   const allReviews = reviews ?? [];
 
   const [shuffled, setShuffled] = useState<Review[]>(allReviews);
+  // Shuffle only after mount so the server-rendered order matches the
+  // client's initial render, then randomize client-side to avoid a
+  // hydration mismatch.
+  // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
   useEffect(() => { setShuffled(shuffle(allReviews)); }, []);
 
   const displayReviews = selectedCourse
