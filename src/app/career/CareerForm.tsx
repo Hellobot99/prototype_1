@@ -99,7 +99,7 @@ export default function CareerForm() {
             onChange={(e) => setInterest(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleExplore()}
             placeholder="e.g. AI, robotics, web development..."
-            className="flex-1 border rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900"
+            className="flex-1 border dark:border-gray-600 rounded-lg px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
           />
           <button
             onClick={() => handleExplore()}
@@ -117,7 +117,7 @@ export default function CareerForm() {
               key={s}
               onClick={() => handleExplore(s)}
               disabled={loading}
-              className="px-3 py-1 rounded-full text-xs border text-gray-600 hover:bg-gray-50 hover:border-gray-400 transition disabled:opacity-40"
+              className="px-3 py-1 rounded-full text-xs border dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-400 transition disabled:opacity-40"
             >
               {s}
             </button>
@@ -148,12 +148,12 @@ export default function CareerForm() {
                   )}
                 </div>
 
-                <p className="text-sm text-gray-600 leading-relaxed">{career.description}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">{career.description}</p>
 
                 {/* Skills */}
                 <div className="flex flex-wrap gap-1.5">
                   {career.skills.map((s) => (
-                    <span key={s} className="px-2 py-0.5 bg-gray-100 text-gray-600 text-xs rounded-full">{s}</span>
+                    <span key={s} className="px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs rounded-full">{s}</span>
                   ))}
                 </div>
 
@@ -162,7 +162,7 @@ export default function CareerForm() {
                   <p className="text-xs text-gray-400 mb-1.5">Related companies</p>
                   <div className="flex flex-wrap gap-1.5">
                     {career.companies.map((c) => (
-                      <span key={c} className="px-2 py-0.5 bg-blue-50 text-blue-700 text-xs rounded-full border border-blue-100">{c}</span>
+                      <span key={c} className="px-2 py-0.5 bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-300 text-xs rounded-full border border-blue-100 dark:border-blue-900">{c}</span>
                     ))}
                   </div>
                 </div>
@@ -170,7 +170,7 @@ export default function CareerForm() {
                 <button
                   onClick={() => handleGetCourses(career)}
                   disabled={loading}
-                  className="mt-auto w-full border-2 border-black text-black text-sm font-medium py-2 rounded-lg hover:bg-black hover:text-white transition disabled:opacity-40"
+                  className="mt-auto w-full bg-[#008482] text-white text-sm font-medium py-2 rounded-lg hover:bg-[#006e6c] transition disabled:opacity-40"
                 >
                   View Recommended Courses →
                 </button>
@@ -199,16 +199,16 @@ export default function CareerForm() {
           {loading ? (
             <div className="py-12 text-center text-sm text-gray-400">Finding relevant courses...</div>
           ) : (
-            <div className="divide-y">
+            <div className="divide-y dark:divide-gray-700">
               {courses.map((c) => (
                 <div key={c.code} className="px-5 py-3 flex items-start gap-4">
                   <div className="min-w-0 flex-1">
                     <div className="flex items-baseline gap-2 mb-0.5">
-                      <p className="font-semibold text-gray-900 text-sm">{c.name}</p>
+                      <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm">{c.name}</p>
                       <span className="text-xs text-gray-400 font-mono flex-shrink-0">{c.code}</span>
                       <span className="text-xs text-gray-400 flex-shrink-0">{c.credits}cr</span>
                     </div>
-                    <p className="text-xs text-gray-500 leading-relaxed">{c.reason}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">{c.reason}</p>
                   </div>
                 </div>
               ))}

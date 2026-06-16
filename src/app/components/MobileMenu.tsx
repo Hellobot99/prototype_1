@@ -4,12 +4,14 @@ import { useState } from "react";
 import NavLinks from "./NavLinks";
 import { logout } from "@/app/login/actions";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSelector from "./LanguageSelector";
 
 export default function MobileMenu({ email }: { email: string }) {
   const [open, setOpen] = useState(false);
 
   return (
     <div className="md:hidden flex items-center gap-3">
+      <LanguageSelector />
       <ThemeToggle />
       <button
         onClick={() => setOpen((p) => !p)}

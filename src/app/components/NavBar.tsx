@@ -3,6 +3,7 @@ import { logout } from "@/app/login/actions";
 import NavLinks from "./NavLinks";
 import MobileMenu from "./MobileMenu";
 import ThemeToggle from "./ThemeToggle";
+import LanguageSelector from "./LanguageSelector";
 
 export default async function NavBar() {
   const supabase = await createClient();
@@ -20,6 +21,7 @@ export default async function NavBar() {
           </div>
         </div>
         <div className="hidden md:flex items-center gap-4">
+          <LanguageSelector />
           <ThemeToggle />
           <a href="/profile" className="text-xs text-white/50 hover:text-white/80 transition-colors">{user.email}</a>
           <form action={logout}>
