@@ -29,12 +29,14 @@ export default function NavLinks({
             className={
               vertical
                 ? `px-3 py-2 rounded-lg text-sm transition-colors ${
-                    active ? "bg-gray-100 font-semibold text-black" : "text-gray-600 hover:bg-gray-50"
+                    active
+                      ? "bg-[#bef2dc] font-semibold text-[#134e3b] dark:bg-[#134e3b] dark:text-[#bef2dc]"
+                      : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700"
                   }`
                 : `text-sm transition-colors ${
                     active
-                      ? "text-black font-semibold border-b-2 border-black pb-0.5"
-                      : "text-gray-500 hover:text-gray-800"
+                      ? "text-white font-semibold border-b-2 border-[#bef2dc] pb-0.5"
+                      : "text-white/60 hover:text-white"
                   }`
             }
           >

@@ -34,20 +34,20 @@ export default function AiSection({ onResult }: AiSectionProps) {
   }
 
   return (
-    <div className="bg-white border rounded-xl p-4">
-      <h3 className="font-semibold text-sm mb-1">AI Schedule Suggestion</h3>
+    <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl p-4">
+      <h3 className="font-semibold text-sm mb-1 text-gray-900 dark:text-gray-100">AI Schedule Suggestion</h3>
       <p className="text-xs text-gray-400 mb-3">Describe your goals to get a suggested schedule.</p>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
           value={goal}
           onChange={(e) => setGoal(e.target.value)}
           placeholder="e.g. I want to focus on AI and robotics"
-          className="flex-1 border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black text-gray-900 min-w-0"
+          className="flex-1 border dark:border-gray-600 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400 min-w-0"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-black text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition disabled:opacity-50 whitespace-nowrap flex-shrink-0"
+          className="bg-[#008482] text-white px-3 py-2 rounded-lg text-sm font-medium hover:bg-[#006e6c] transition disabled:opacity-50 whitespace-nowrap flex-shrink-0"
         >
           {loading ? "..." : "Ask AI"}
         </button>

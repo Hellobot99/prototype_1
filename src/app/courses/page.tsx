@@ -20,7 +20,7 @@ export default async function CoursesPage() {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <CoursesContent
         courses={courses}
         completedMap={completedMap}

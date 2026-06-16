@@ -11,7 +11,7 @@ export default async function ReviewsPage() {
   const { data: courses } = await supabase.from("courses").select("id, code, name").order("name");
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <ReviewsContent reviews={reviews} courses={courses ?? []} />
     </div>
   );

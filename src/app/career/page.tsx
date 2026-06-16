@@ -2,7 +2,7 @@ import CareerForm from "./CareerForm";
 
 export default function CareerPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <main className="max-w-6xl mx-auto p-6">
         <CareerForm />
       </main>
