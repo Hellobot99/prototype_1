@@ -29,7 +29,7 @@ const DAY_MAP = {
 };
 
 // Load timetable.json
-const raw = readFileSync(new URL("../../timetable.json", import.meta.url), "utf8");
+const raw = readFileSync(new URL("../timetable.json", import.meta.url), "utf8");
 const data = JSON.parse(raw);
 console.log(`📂 ${data.length} records loaded from timetable.json`);
 
