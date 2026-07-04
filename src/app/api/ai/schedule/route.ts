@@ -63,8 +63,7 @@ Pick 5-8 courses from the AVAILABLE list that best fit the student's goal. Use t
     const parsed = JSON.parse(text);
     return NextResponse.json(parsed);
   } catch (err: unknown) {
-    console.error("[AI route error]", err);
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("[AI schedule error]", err);
+    return NextResponse.json({ error: "Failed to generate a schedule suggestion. Please try again." }, { status: 500 });
   }
 }

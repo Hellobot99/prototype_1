@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 import CreateReviewModal from "./CreateReviewModal";
 
 interface Review {
@@ -38,12 +38,12 @@ function ReviewCard({ review }: { review: Review }) {
   const text = review.comment || "";
 
   return (
-    <div className="border-b border-gray-100 py-4 last:border-0">
-      <p className="font-semibold text-gray-900 text-sm">{review.courses?.name ?? "Unknown"}</p>
+    <div className="border-b border-gray-100 dark:border-gray-700 py-4 last:border-0">
+      <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm">{review.courses?.name ?? "Unknown"}</p>
       <p className="text-xs text-gray-400 mb-1">{review.courses?.code}</p>
       <Stars rating={review.rating} />
       {text && (
-        <p className="text-sm text-gray-700 mt-2 leading-relaxed">
+        <p className="text-sm text-gray-700 dark:text-gray-300 mt-2 leading-relaxed">
           {long && !expanded ? text.slice(0, 120) + "…" : text}
           {long && (
             <button
@@ -76,8 +76,12 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
 
   const allReviews = reviews ?? [];
 
-  // Shuffle once on mount for random feed
-  const shuffled = useMemo(() => shuffle(allReviews), []);
+  const [shuffled, setShuffled] = useState<Review[]>(allReviews);
+  // Shuffle only after mount so the server-rendered order matches the
+  // client's initial render, then randomize client-side to avoid a
+  // hydration mismatch.
+  // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
+  useEffect(() => { setShuffled(shuffle(allReviews)); }, []);
 
   const displayReviews = selectedCourse
     ? allReviews.filter((r) => r.courses?.id === selectedCourse.id)
@@ -94,26 +98,26 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
 
   return (
     <>
-      <div className="flex min-h-[calc(100vh-57px)]">
+      <div className="flex flex-col md:flex-row md:min-h-[calc(100vh-57px)]">
 
         {/* ── LEFT SIDEBAR ── */}
-        <div className="w-72 flex-shrink-0 border-r bg-white flex flex-col">
+        <div className="w-full md:w-72 md:flex-shrink-0 border-b md:border-b-0 md:border-r dark:border-gray-700 bg-white dark:bg-gray-800 flex flex-col">
           {/* Search */}
-          <div className="p-4 border-b">
+          <div className="p-4 border-b dark:border-gray-700">
             <div className="relative">
               <input
                 type="text"
                 value={search}
                 onChange={(e) => { setSearch(e.target.value); setSelectedCourse(null); }}
                 placeholder="Search by course or code..."
-                className="w-full border rounded-lg pl-3 pr-8 py-2 text-sm outline-none focus:ring-2 focus:ring-black text-gray-900 bg-gray-50"
+                className="w-full border dark:border-gray-600 rounded-lg pl-3 pr-8 py-2 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-700 placeholder-gray-400"
               />
               <span className="absolute right-2.5 top-2.5 text-gray-400 text-sm">⌕</span>
             </div>
           </div>
 
           {/* Course list or search results */}
-          <div className="flex-1 overflow-y-auto">
+          <div className="max-h-72 md:max-h-none md:flex-1 overflow-y-auto">
             {search.trim().length === 0 ? (
               /* Default: courses that have reviews */
               <div>
@@ -128,12 +132,12 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
                       <button
                         key={c.id}
                         onClick={() => setSelectedCourse(selectedCourse?.id === c.id ? null : c)}
-                        className={`w-full text-left px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors ${
-                          selectedCourse?.id === c.id ? "bg-gray-100 font-semibold" : ""
+                        className={`w-full text-left px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+                          selectedCourse?.id === c.id ? "bg-gray-100 dark:bg-gray-700 font-semibold" : ""
                         }`}
                       >
                         <div className="min-w-0">
-                          <p className="text-sm text-gray-900 truncate">{c.name}</p>
+                          <p className="text-sm text-gray-900 dark:text-gray-100 truncate">{c.name}</p>
                           <p className="text-xs text-gray-400">{c.code}</p>
                         </div>
                         <span className="text-xs text-gray-400 ml-2 flex-shrink-0">{count}</span>
@@ -159,12 +163,12 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
                       <button
                         key={c.id}
                         onClick={() => { setSelectedCourse(c); setSearch(""); }}
-                        className={`w-full text-left px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 transition-colors ${
-                          selectedCourse?.id === c.id ? "bg-gray-100 font-semibold" : ""
+                        className={`w-full text-left px-4 py-2.5 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors ${
+                          selectedCourse?.id === c.id ? "bg-gray-100 dark:bg-gray-700 font-semibold" : ""
                         }`}
                       >
                         <div className="min-w-0">
-                          <p className="text-sm text-gray-900 truncate">{c.name}</p>
+                          <p className="text-sm text-gray-900 dark:text-gray-100 truncate">{c.name}</p>
                           <p className="text-xs text-gray-400">{c.code}</p>
                         </div>
                         {count > 0 && (
@@ -179,10 +183,10 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
           </div>
 
           {/* Write Review button */}
-          <div className="p-4 border-t">
+          <div className="p-4 border-t dark:border-gray-700">
             <button
               onClick={() => setShowModal(true)}
-              className="w-full bg-black text-white py-2 rounded-lg text-sm font-medium hover:bg-gray-800 transition"
+              className="w-full bg-[#008482] text-white py-2 rounded-lg text-sm font-medium hover:bg-[#006e6c] transition"
             >
               + Write Review
             </button>
@@ -190,18 +194,18 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
         </div>
 
         {/* ── RIGHT FEED ── */}
-        <div className="flex-1 overflow-y-auto bg-gray-50">
+        <div className="flex-1 overflow-y-auto bg-gray-50 dark:bg-gray-900">
           <div className="max-w-2xl mx-auto p-6">
             {/* Header */}
             <div className="mb-4 flex items-center justify-between">
               {selectedCourse ? (
                 <div>
-                  <h2 className="font-bold text-lg text-gray-900">{selectedCourse.name}</h2>
+                  <h2 className="font-bold text-lg text-gray-900 dark:text-gray-100">{selectedCourse.name}</h2>
                   <p className="text-xs text-gray-400">{selectedCourse.code} · {displayReviews.length} review{displayReviews.length !== 1 ? "s" : ""}</p>
                 </div>
               ) : (
                 <div>
-                  <h2 className="font-bold text-lg text-gray-900">Course Reviews</h2>
+                  <h2 className="font-bold text-lg text-gray-900 dark:text-gray-100">Course Reviews</h2>
                   <p className="text-xs text-gray-400">All reviews · random order</p>
                 </div>
               )}
@@ -216,7 +220,7 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
             </div>
 
             {/* Review cards */}
-            <div className="bg-white rounded-xl border px-5">
+            <div className="bg-white dark:bg-gray-800 rounded-xl border dark:border-gray-700 px-5">
               {displayReviews.length === 0 ? (
                 <div className="py-16 text-center">
                   <p className="text-gray-400 text-sm">No reviews for this course yet.</p>

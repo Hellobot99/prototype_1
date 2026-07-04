@@ -20,7 +20,6 @@ interface CompletedInfo { grade: string; semester: string; }
 interface CoursesContentProps {
   courses: Course[] | null;
   completedMap: Record<string, CompletedInfo>;
-  myReviews: Array<{ rating: number }>;
   scheduledIds: string[];
 }
 
@@ -67,7 +66,7 @@ function calcCredits(courses: Course[], completedMap: Record<string, CompletedIn
   }, 0);
 }
 
-export default function CoursesContent({ courses, completedMap, myReviews, scheduledIds }: CoursesContentProps) {
+export default function CoursesContent({ courses, completedMap, scheduledIds }: CoursesContentProps) {
   const [showModal, setShowModal] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [activeSem, setActiveSem] = useState<string>("all");
@@ -126,11 +125,11 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
       <div className="max-w-5xl mx-auto p-6 space-y-4">
 
         {/* ── Stats Header ── */}
-        <div className="bg-white border rounded-xl p-6">
+        <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl p-6">
           <div className="flex items-end gap-10 mb-5 flex-wrap">
             <div>
               <p className="text-xs text-gray-400 mb-1">Overall GPA</p>
-              <p className="text-4xl font-bold text-black">
+              <p className="text-4xl font-bold text-black dark:text-white">
                 {overallGPA ?? "—"}
                 <span className="text-base font-normal text-gray-400 ml-1">/ 4.0</span>
               </p>
@@ -138,7 +137,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
             {semGPA !== null && activeSem !== "all" && (
               <div>
                 <p className="text-xs text-gray-400 mb-1">{activeSem} GPA</p>
-                <p className="text-4xl font-bold text-gray-700">
+                <p className="text-4xl font-bold text-gray-700 dark:text-gray-200">
                   {semGPA ?? "—"}
                   <span className="text-base font-normal text-gray-400 ml-1">/ 4.0</span>
                 </p>
@@ -148,14 +147,14 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
               <p className="text-xs text-gray-400 mb-1">
                 {activeSem !== "all" ? `${activeSem} Credits` : "Total Credits"}
               </p>
-              <p className="text-4xl font-bold text-black">
+              <p className="text-4xl font-bold text-black dark:text-white">
                 {activeSem !== "all" ? semCredits : overallCredits}
                 <span className="text-base font-normal text-gray-400 ml-1">cr</span>
               </p>
             </div>
             <div>
               <p className="text-xs text-gray-400 mb-1">Courses Taken</p>
-              <p className="text-4xl font-bold text-black">
+              <p className="text-4xl font-bold text-black dark:text-white">
                 {activeSem !== "all" ? viewCourses.length : completedCourses.length}
                 <span className="text-base font-normal text-gray-400 ml-1">courses</span>
               </p>
@@ -183,8 +182,8 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
         </div>
 
         {/* ── Semester Tabs ── */}
-        <div className="bg-white border rounded-xl overflow-hidden">
-          <div className="border-b overflow-x-auto">
+        <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl overflow-hidden">
+          <div className="border-b dark:border-gray-700 overflow-x-auto">
             <div className="flex min-w-max px-2 pt-2">
               {[
                 { key: "all", label: "All Taken" },
@@ -195,7 +194,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
                   onClick={() => { setActiveSem(key); setSearch(""); }}
                   className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeSem === key
-                      ? "border-black text-black"
+                      ? "border-[#008482] text-[#008482]"
                       : "border-transparent text-gray-400 hover:text-gray-700"
                   }`}
                 >
@@ -206,33 +205,34 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
           </div>
 
           {/* Search */}
-          <div className="px-4 py-2 border-b flex items-center gap-2 flex-wrap">
+          <div className="px-4 py-2 border-b dark:border-gray-700 flex items-center gap-2 flex-wrap">
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder={activeSem === "all" ? "Search taken courses..." : `Search in ${activeSem}...`}
-              className="border rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-black text-gray-900 w-52"
+              className="border dark:border-gray-600 rounded-lg px-3 py-1.5 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 w-52"
             />
             <span className="text-xs text-gray-400 ml-auto">{displayed.length} courses</span>
           </div>
 
-          {/* Table */}
-          <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b">
+          {/* Table (desktop) */}
+          <div className="hidden md:block overflow-x-auto">
+          <table className="w-full text-sm" style={{ minWidth: 640 }}>
+            <thead className="bg-gray-50 dark:bg-gray-700 border-b dark:border-gray-600">
               <tr>
                 <th className="px-4 py-2.5 w-8"></th>
-                <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500">Code</th>
-                <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500">Course Name</th>
-                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500">Cr</th>
-                <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500">Campus</th>
-                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500">Semester</th>
-                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500">Grade</th>
-                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500">Rating</th>
+                <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500 dark:text-gray-400">Code</th>
+                <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500 dark:text-gray-400">Course Name</th>
+                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500 dark:text-gray-400">Cr</th>
+                <th className="px-4 py-2.5 text-left text-xs font-medium text-gray-500 dark:text-gray-400">Campus</th>
+                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500 dark:text-gray-400">Semester</th>
+                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500 dark:text-gray-400">Grade</th>
+                <th className="px-4 py-2.5 text-center text-xs font-medium text-gray-500 dark:text-gray-400">Rating</th>
                 <th className="px-4 py-2.5 w-10"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-50">
+            <tbody className="divide-y divide-gray-50 dark:divide-gray-700">
               {displayed.length === 0 ? (
                 <tr>
                   <td colSpan={9} className="py-12 text-center text-gray-400 text-sm">
@@ -249,13 +249,13 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
                     : null;
 
                   return (
-                    <tr key={course.id} className={`transition-colors ${done ? "bg-gray-50/40" : "hover:bg-gray-50"}`}>
+                    <tr key={course.id} className={`transition-colors ${done ? "bg-gray-50/40 dark:bg-gray-700/30" : "hover:bg-gray-50 dark:hover:bg-gray-700/50"}`}>
                       <td className="px-4 py-2.5">
                         <button
                           onClick={() => handleToggle(course.id)}
                           disabled={isPending}
                           className={`w-5 h-5 rounded border-2 flex items-center justify-center transition-all disabled:opacity-40 ${
-                            done ? "bg-black border-black text-white" : "border-gray-300 hover:border-gray-500"
+                            done ? "bg-[#008482] border-[#008482] text-white" : "border-gray-300 hover:border-[#008482]"
                           }`}
                         >
                           {done && <span className="text-xs leading-none">✓</span>}
@@ -264,7 +264,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
                       <td className={`px-4 py-2.5 font-mono text-xs ${done ? "text-gray-300" : "text-gray-400"}`}>
                         {course.code}
                       </td>
-                      <td className={`px-4 py-2.5 font-medium ${done ? "text-gray-400" : "text-gray-900"}`}>
+                      <td className={`px-4 py-2.5 font-medium ${done ? "text-gray-400" : "text-gray-900 dark:text-gray-100"}`}>
                         {course.name}
                       </td>
                       <td className={`px-4 py-2.5 text-center text-xs ${done ? "text-gray-400" : "text-gray-700"}`}>
@@ -285,7 +285,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
                             value={info?.semester ?? ""}
                             onChange={(e) => handleField(course.id, "semester", e.target.value)}
                             disabled={isPending}
-                            className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-black bg-white text-gray-700 disabled:opacity-50 max-w-[110px]"
+                            className="text-xs border dark:border-gray-600 rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 disabled:opacity-50 max-w-[110px]"
                           >
                             <option value="">—</option>
                             {SEMESTERS.map((s) => (
@@ -301,7 +301,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
                             value={info?.grade ?? ""}
                             onChange={(e) => handleField(course.id, "grade", e.target.value)}
                             disabled={isPending}
-                            className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-black bg-white text-gray-700 disabled:opacity-50"
+                            className="text-xs border dark:border-gray-600 rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 disabled:opacity-50"
                           >
                             <option value="">—</option>
                             {GRADES.map((g) => (
@@ -329,13 +329,95 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
               )}
             </tbody>
           </table>
+          </div>
+
+          {/* Cards (mobile) */}
+          <div className="md:hidden divide-y divide-gray-50">
+            {displayed.length === 0 ? (
+              <p className="py-12 text-center text-gray-400 text-sm px-4">
+                {activeSem === "all" ? "No courses taken yet. Check courses below to add them." : "No courses recorded for this semester."}
+              </p>
+            ) : (
+              displayed.map((course) => {
+                const done = course.id in completedMap;
+                const info = completedMap[course.id];
+                const ratings = course.reviews?.map((r) => r.rating) ?? [];
+                const avg = ratings.length
+                  ? (ratings.reduce((a, b) => a + b, 0) / ratings.length).toFixed(1)
+                  : null;
+
+                return (
+                  <div key={course.id} className={`px-4 py-3 ${done ? "bg-gray-50/40" : ""}`}>
+                    <div className="flex items-start gap-3">
+                      <button
+                        onClick={() => handleToggle(course.id)}
+                        disabled={isPending}
+                        className={`w-5 h-5 mt-0.5 rounded border-2 flex-shrink-0 flex items-center justify-center transition-all disabled:opacity-40 ${
+                          done ? "bg-[#008482] border-[#008482] text-white" : "border-gray-300 hover:border-[#008482]"
+                        }`}
+                      >
+                        {done && <span className="text-xs leading-none">✓</span>}
+                      </button>
+                      <div className="min-w-0 flex-1">
+                        <p className={`text-sm font-medium ${done ? "text-gray-400" : "text-gray-900 dark:text-gray-100"}`}>{course.name}</p>
+                        <div className="flex items-center gap-2 mt-1 flex-wrap">
+                          <span className={`font-mono text-xs ${done ? "text-gray-300 dark:text-gray-500" : "text-gray-400"}`}>{course.code}</span>
+                          <span className={`text-xs ${done ? "text-gray-400" : "text-gray-700 dark:text-gray-300"}`}>{course.credits}cr</span>
+                          <span className={`px-2 py-0.5 rounded-full text-xs ${
+                            done ? "bg-gray-100 text-gray-400" :
+                            course.campus === "Toyosu" ? "bg-blue-50 text-blue-600" : "bg-green-50 text-green-600"
+                          }`}>
+                            {course.campus}
+                          </span>
+                          {avg && <span className="text-xs text-yellow-500">★ {avg}</span>}
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => { setSelectedCourseId(course.id); setShowModal(true); }}
+                        className="text-xs text-gray-300 hover:text-blue-500 transition-colors flex-shrink-0"
+                      >
+                        Rate
+                      </button>
+                    </div>
+
+                    {done && (
+                      <div className="flex items-center gap-2 mt-2 pl-8">
+                        <select
+                          value={info?.semester ?? ""}
+                          onChange={(e) => handleField(course.id, "semester", e.target.value)}
+                          disabled={isPending}
+                          className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white text-gray-700 disabled:opacity-50"
+                        >
+                          <option value="">Semester —</option>
+                          {SEMESTERS.map((s) => (
+                            <option key={s} value={s}>{s}</option>
+                          ))}
+                        </select>
+                        <select
+                          value={info?.grade ?? ""}
+                          onChange={(e) => handleField(course.id, "grade", e.target.value)}
+                          disabled={isPending}
+                          className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white text-gray-700 disabled:opacity-50"
+                        >
+                          <option value="">Grade —</option>
+                          {GRADES.map((g) => (
+                            <option key={g} value={g}>{g}</option>
+                          ))}
+                        </select>
+                      </div>
+                    )}
+                  </div>
+                );
+              })
+            )}
+          </div>
         </div>
       </div>
 
       {/* ── Add Courses ── */}
-      <div className="bg-white border rounded-xl overflow-hidden">
-        <div className="px-4 py-3 border-b">
-          <h3 className="font-semibold text-sm">Add Course to Records</h3>
+      <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl overflow-hidden">
+        <div className="px-4 py-3 border-b dark:border-gray-700">
+          <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100">Add Course to Records</h3>
         </div>
 
         {/* Current timetable courses */}
@@ -350,12 +432,12 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
                 .map((course) => {
                   const done = course.id in completedMap;
                   return (
-                    <div key={course.id} className={`flex items-center gap-3 px-4 py-2.5 ${done ? "bg-gray-50" : "hover:bg-gray-50"}`}>
+                    <div key={course.id} className={`flex items-center gap-3 px-4 py-2.5 ${done ? "bg-gray-50 dark:bg-gray-700/50" : "hover:bg-gray-50 dark:hover:bg-gray-700/50"}`}>
                       <button
                         onClick={() => handleToggle(course.id)}
                         disabled={isPending}
                         className={`w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center transition-all disabled:opacity-40 ${
-                          done ? "bg-black border-black text-white" : "border-gray-300 hover:border-gray-500"
+                          done ? "bg-[#008482] border-[#008482] text-white" : "border-gray-300 hover:border-[#008482]"
                         }`}
                       >
                         {done && <span className="text-xs leading-none">✓</span>}
@@ -375,14 +457,14 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
         )}
 
         {/* Search other courses */}
-        <div className="px-4 pt-3 pb-2 border-t">
+        <div className="px-4 pt-3 pb-2 border-t dark:border-gray-700">
           <p className="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Search Other Courses</p>
           <input
             type="text"
             value={addSearch}
             onChange={(e) => setAddSearch(e.target.value)}
             placeholder="Type to search all courses..."
-            className="w-full border rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-black text-gray-900"
+            className="w-full border dark:border-gray-600 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
           />
         </div>
 
@@ -398,18 +480,18 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
               .map((course) => {
                 const done = course.id in completedMap;
                 return (
-                  <div key={course.id} className={`flex items-center gap-3 px-4 py-2.5 ${done ? "bg-gray-50" : "hover:bg-gray-50"}`}>
+                  <div key={course.id} className={`flex items-center gap-3 px-4 py-2.5 ${done ? "bg-gray-50 dark:bg-gray-700/50" : "hover:bg-gray-50 dark:hover:bg-gray-700/50"}`}>
                     <button
                       onClick={() => handleToggle(course.id)}
                       disabled={isPending}
                       className={`w-5 h-5 rounded border-2 flex-shrink-0 flex items-center justify-center transition-all disabled:opacity-40 ${
-                        done ? "bg-black border-black text-white" : "border-gray-300 hover:border-gray-500"
+                        done ? "bg-[#008482] border-[#008482] text-white" : "border-gray-300 hover:border-[#008482]"
                       }`}
                     >
                       {done && <span className="text-xs leading-none">✓</span>}
                     </button>
                     <div className="min-w-0 flex-1">
-                      <p className={`text-sm font-medium truncate ${done ? "text-gray-400" : "text-gray-900"}`}>{course.name}</p>
+                      <p className={`text-sm font-medium truncate ${done ? "text-gray-400" : "text-gray-900 dark:text-gray-100"}`}>{course.name}</p>
                       <p className="text-xs text-gray-400">
                         {course.code} · {course.campus} · {course.day_of_week ? `${course.day_of_week.slice(0,3)} P${course.period}` : "Intensive"} · {course.credits}cr
                       </p>
@@ -425,6 +507,7 @@ export default function CoursesContent({ courses, completedMap, myReviews, sched
       {showModal && (
         <CreateReviewModal
           courses={coursesForModal}
+          initialCourseId={selectedCourseId}
           onClose={() => { setShowModal(false); setSelectedCourseId(""); }}
           onSuccess={() => {}}
         />

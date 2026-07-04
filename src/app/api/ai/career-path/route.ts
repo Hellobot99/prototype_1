@@ -69,7 +69,6 @@ Respond ONLY with valid JSON (no markdown):
     return NextResponse.json(JSON.parse(text));
   } catch (err: unknown) {
     console.error("[Career path error]", err);
-    const message = err instanceof Error ? err.message : "Unknown error";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: "Failed to generate course recommendations. Please try again." }, { status: 500 });
   }
 }
