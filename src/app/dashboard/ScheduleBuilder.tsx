@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState, useTransition } from "react";
+import { Fragment, useMemo, useState, useTransition } from "react";
 import { addCourse, removeCourse } from "./actions";
 import AiSection from "./AiSection";
 import { validateSchedule } from "@/lib/scheduling/validator";
@@ -29,52 +29,38 @@ interface ScheduleBuilderProps {
 }
 
 type FilterVal = string;
+type SortKey = "name" | "campus" | "period" | "day";
+type SortDirection = "asc" | "desc";
 
-function FilterChip({
+const DAY_ORDER = new Map(DAYS.map((day, index) => [day, index]));
+
+function SortButton({
   label,
-  options,
-  value,
-  onChange,
+  column,
+  sortKey,
+  sortDirection,
+  onSort,
 }: {
   label: string;
-  options: { label: string; value: FilterVal }[];
-  value: FilterVal;
-  onChange: (v: FilterVal) => void;
+  column: SortKey;
+  sortKey: SortKey;
+  sortDirection: SortDirection;
+  onSort: (column: SortKey) => void;
 }) {
-  const [open, setOpen] = useState(false);
-  const selected = options.find((o) => o.value === value);
+  const active = sortKey === column;
+
   return (
-    <div className="relative">
-      <button
-        onClick={() => setOpen((p) => !p)}
-        className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium border transition ${
-          value !== "all"
-            ? "bg-[#008482] text-white border-[#008482]"
-            : "bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 border-gray-300 dark:border-gray-600 hover:border-gray-400"
-        }`}
-      >
-        {label}: {selected?.label ?? "All"}
-        <span className="text-[10px] opacity-60">▼</span>
-      </button>
-      {open && (
-        <>
-          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute top-8 left-0 z-20 bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl shadow-lg py-1 min-w-[120px]">
-            {options.map((o) => (
-              <button
-                key={o.value}
-                onClick={() => { onChange(o.value); setOpen(false); }}
-                className={`w-full text-left px-4 py-2 text-xs hover:bg-gray-50 dark:hover:bg-gray-700 ${
-                  value === o.value ? "font-bold text-black dark:text-white" : "text-gray-700 dark:text-gray-300"
-                }`}
-              >
-                {o.label}
-              </button>
-            ))}
-          </div>
-        </>
-      )}
-    </div>
+    <button
+      type="button"
+      onClick={() => onSort(column)}
+      className="inline-flex w-full items-center gap-1 text-left font-semibold text-gray-600 hover:text-black dark:text-gray-300 dark:hover:text-white"
+      aria-label={`Sort by ${label} ${active && sortDirection === "asc" ? "descending" : "ascending"}`}
+    >
+      <span>{label}</span>
+      <span aria-hidden="true" className={active ? "text-[#008482]" : "text-gray-300 dark:text-gray-600"}>
+        {active ? (sortDirection === "asc" ? "↑" : "↓") : "↕"}
+      </span>
+    </button>
   );
 }
 
@@ -84,6 +70,8 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const [filterDay, setFilterDay] = useState<FilterVal>("all");
   const [filterPeriod, setFilterPeriod] = useState<FilterVal>("all");
   const [filterCredits, setFilterCredits] = useState<FilterVal>("all");
+  const [sortKey, setSortKey] = useState<SortKey>("name");
+  const [sortDirection, setSortDirection] = useState<SortDirection>("asc");
   const [hoveredCourse, setHoveredCourse] = useState<Course | null>(null);
   const todayIndex = new Date().getDay() - 1; // Mon=0 ... Sat=5, Sun=-1
   const [mobileDay, setMobileDay] = useState<string>(DAYS[todayIndex] ?? "Monday");
@@ -140,17 +128,57 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
 
   const untimedCourses = scheduledCourses.filter((c) => !c.day_of_week || !c.period);
 
-  const filtered = availableCourses.filter((c) => {
+  const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    if (q && !c.code.toLowerCase().includes(q) && !c.name.toLowerCase().includes(q)) return false;
-    if (filterCampus !== "all" && c.campus !== filterCampus) return false;
-    if (filterDay !== "all" && c.day_of_week !== filterDay) return false;
-    if (filterPeriod !== "all" && String(c.period) !== filterPeriod) return false;
-    if (filterCredits !== "all" && String(c.credits) !== filterCredits) return false;
-    return true;
-  });
+    const result = availableCourses.filter((c) => {
+      if (q && !c.code.toLowerCase().includes(q) && !c.name.toLowerCase().includes(q)) return false;
+      if (filterCampus !== "all" && c.campus !== filterCampus) return false;
+      if (filterDay === "intensive" && c.day_of_week) return false;
+      if (filterDay !== "all" && filterDay !== "intensive" && c.day_of_week !== filterDay) return false;
+      if (filterPeriod === "intensive" && c.period) return false;
+      if (filterPeriod !== "all" && filterPeriod !== "intensive" && String(c.period) !== filterPeriod) return false;
+      if (filterCredits !== "all" && String(c.credits) !== filterCredits) return false;
+      return true;
+    });
 
-  const showTable = search.trim().length > 0 || filterCampus !== "all" || filterDay !== "all" || filterPeriod !== "all" || filterCredits !== "all";
+    return result.sort((a, b) => {
+      let comparison = 0;
+      if (sortKey === "name") comparison = a.name.localeCompare(b.name);
+      if (sortKey === "campus") comparison = (a.campus ?? "").localeCompare(b.campus ?? "");
+      if (sortKey === "period") comparison = (a.period ?? Number.MAX_SAFE_INTEGER) - (b.period ?? Number.MAX_SAFE_INTEGER);
+      if (sortKey === "day") {
+        comparison = (DAY_ORDER.get(a.day_of_week ?? "") ?? Number.MAX_SAFE_INTEGER)
+          - (DAY_ORDER.get(b.day_of_week ?? "") ?? Number.MAX_SAFE_INTEGER);
+      }
+      return sortDirection === "asc" ? comparison : -comparison;
+    });
+  }, [
+    availableCourses,
+    filterCampus,
+    filterCredits,
+    filterDay,
+    filterPeriod,
+    search,
+    sortDirection,
+    sortKey,
+  ]);
+
+  const hasFilters = Boolean(
+    search
+    || filterCampus !== "all"
+    || filterDay !== "all"
+    || filterPeriod !== "all"
+    || filterCredits !== "all"
+  );
+
+  function handleSort(column: SortKey) {
+    if (column === sortKey) {
+      setSortDirection((current) => current === "asc" ? "desc" : "asc");
+      return;
+    }
+    setSortKey(column);
+    setSortDirection("asc");
+  }
 
   function handleAdd(courseId: string) {
     startTransition(async () => { await addCourse(courseId); });
@@ -450,78 +478,142 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
       <div className="w-full lg:flex-[7] min-w-0 space-y-3 lg:sticky lg:top-4">
 
         {/* Course Search */}
-        <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl overflow-visible">
+        <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl overflow-hidden">
           <div className="p-4 border-b dark:border-gray-700">
-            <h3 className="font-bold text-sm mb-3 text-gray-900 dark:text-gray-100">Add Courses</h3>
-            <input
-              type="text"
-              placeholder="Search by code or name..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full border dark:border-gray-600 rounded-lg px-3 py-2 text-sm mb-3 outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400"
-            />
-            <div className="flex flex-wrap gap-1.5">
-              <FilterChip label="Campus" value={filterCampus} onChange={setFilterCampus}
-                options={[{ label: "All", value: "all" }, { label: "Toyosu", value: "Toyosu" }, { label: "Omiya", value: "Omiya" }]}
-              />
-              <FilterChip label="Day" value={filterDay} onChange={setFilterDay}
-                options={[{ label: "All", value: "all" }, ...DAYS.map((d) => ({ label: DAY_SHORT[d], value: d }))]}
-              />
-              <FilterChip label="Period" value={filterPeriod} onChange={setFilterPeriod}
-                options={[{ label: "All", value: "all" }, ...PERIODS.map((p) => ({ label: `P${p}`, value: String(p) }))]}
-              />
-              <FilterChip label="Credits" value={filterCredits} onChange={setFilterCredits}
-                options={[{ label: "All", value: "all" }, { label: "1cr", value: "1" }, { label: "2cr", value: "2" }, { label: "3cr", value: "3" }, { label: "4cr", value: "4" }]}
-              />
-              {(filterCampus !== "all" || filterDay !== "all" || filterPeriod !== "all" || filterCredits !== "all" || search) && (
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <div>
+                <h3 className="font-bold text-sm text-gray-900 dark:text-gray-100">Add Courses</h3>
+                <p className="mt-0.5 text-xs text-gray-400">Select a time slot or sort a column to find a course.</p>
+              </div>
+              {hasFilters && (
                 <button
                   onClick={() => { setSearch(""); setFilterCampus("all"); setFilterDay("all"); setFilterPeriod("all"); setFilterCredits("all"); }}
-                  className="px-2.5 py-1 rounded-full text-xs text-gray-500 border border-gray-300 hover:bg-gray-50"
+                  className="flex-shrink-0 text-xs font-medium text-gray-500 underline-offset-2 hover:text-black hover:underline dark:text-gray-400 dark:hover:text-white"
                 >Reset</button>
               )}
             </div>
+            <label className="block">
+              <span className="sr-only">Search courses</span>
+              <input
+                type="search"
+                placeholder="Search by course name or code"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full border dark:border-gray-600 rounded-lg px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-[#008482] text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 placeholder-gray-400"
+              />
+            </label>
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <label className="text-[11px] font-medium text-gray-500 dark:text-gray-400">
+                Location
+                <select
+                  value={filterCampus}
+                  onChange={(e) => setFilterCampus(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-xs text-gray-900 outline-none focus:ring-2 focus:ring-[#008482] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                >
+                  <option value="all">All locations</option>
+                  <option value="Toyosu">Toyosu</option>
+                  <option value="Omiya">Omiya</option>
+                </select>
+              </label>
+              <label className="text-[11px] font-medium text-gray-500 dark:text-gray-400">
+                Day
+                <select
+                  value={filterDay}
+                  onChange={(e) => setFilterDay(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-xs text-gray-900 outline-none focus:ring-2 focus:ring-[#008482] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                >
+                  <option value="all">All days</option>
+                  {DAYS.map((day) => <option key={day} value={day}>{day}</option>)}
+                  <option value="intensive">Intensive</option>
+                </select>
+              </label>
+              <label className="text-[11px] font-medium text-gray-500 dark:text-gray-400">
+                Period
+                <select
+                  value={filterPeriod}
+                  onChange={(e) => setFilterPeriod(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-xs text-gray-900 outline-none focus:ring-2 focus:ring-[#008482] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                >
+                  <option value="all">All periods</option>
+                  {PERIODS.map((period) => <option key={period} value={period}>Period {period}</option>)}
+                  <option value="intensive">Intensive</option>
+                </select>
+              </label>
+              <label className="text-[11px] font-medium text-gray-500 dark:text-gray-400">
+                Credits
+                <select
+                  value={filterCredits}
+                  onChange={(e) => setFilterCredits(e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-2 py-2 text-xs text-gray-900 outline-none focus:ring-2 focus:ring-[#008482] dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                >
+                  <option value="all">All credits</option>
+                  {[1, 2, 3, 4].map((credit) => <option key={credit} value={credit}>{credit} credits</option>)}
+                </select>
+              </label>
+            </div>
           </div>
 
-          {!showTable ? (
-            <p className="text-xs text-gray-400 text-center py-6">Search or filter to browse courses.</p>
-          ) : (
-            <>
-              <p className="px-4 py-2 bg-gray-50 dark:bg-gray-700 border-b dark:border-gray-600 text-xs text-gray-500 dark:text-gray-400">{filtered.length} courses found</p>
-              <div className="overflow-y-auto" style={{ maxHeight: 320 }}>
+          <p className="border-b bg-gray-50 px-4 py-2 text-xs text-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400" aria-live="polite">
+            {filtered.length} {filtered.length === 1 ? "course" : "courses"} found
+          </p>
+          <div className="max-h-[420px] overflow-y-auto overflow-x-hidden">
+            <table className="w-full table-fixed border-collapse text-[11px]">
+              <thead className="sticky top-0 z-10 bg-white shadow-[0_1px_0_0_#e5e7eb] dark:bg-gray-800 dark:shadow-[0_1px_0_0_#374151]">
+                <tr>
+                  <th className="w-[36%] px-2 py-2.5 text-left">
+                    <SortButton label="Course Name" column="name" sortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                  </th>
+                  <th className="w-[18%] px-1 py-2.5 text-left">
+                    <SortButton label="Location" column="campus" sortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                  </th>
+                  <th className="w-[14%] px-1 py-2.5 text-left">
+                    <SortButton label="Period" column="period" sortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                  </th>
+                  <th className="w-[14%] px-1 py-2.5 text-left">
+                    <SortButton label="Day" column="day" sortKey={sortKey} sortDirection={sortDirection} onSort={handleSort} />
+                  </th>
+                  <th className="w-[18%] px-2 py-2.5"><span className="sr-only">Add</span></th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100 dark:divide-gray-700">
                 {filtered.length === 0 ? (
-                  <p className="text-center py-8 text-sm text-gray-400">No courses match your filters.</p>
-                ) : (
-                  <div className="divide-y divide-gray-100">
-                    {filtered.slice(0, 100).map((course) => (
-                      <div
-                        key={course.id}
-                        className="flex items-center gap-2 px-3 py-2 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-default"
-                        onMouseEnter={() => setHoveredCourse(course)}
-                        onMouseLeave={() => setHoveredCourse(null)}
+                  <tr>
+                    <td colSpan={5} className="px-4 py-10 text-center text-sm text-gray-400">
+                      No courses match your filters.
+                    </td>
+                  </tr>
+                ) : filtered.slice(0, 100).map((course) => (
+                  <tr
+                    key={course.id}
+                    className="hover:bg-gray-50 dark:hover:bg-gray-700"
+                    onMouseEnter={() => setHoveredCourse(course)}
+                    onMouseLeave={() => setHoveredCourse(null)}
+                  >
+                    <td className="px-2 py-2.5">
+                      <p className="truncate font-semibold text-gray-900 dark:text-gray-100" title={course.name}>{course.name}</p>
+                      <p className="mt-0.5 font-mono text-[10px] text-gray-400 dark:text-gray-500">{course.code} · {course.credits}cr</p>
+                    </td>
+                    <td className="truncate px-1 py-2.5 text-gray-600 dark:text-gray-300" title={course.campus ?? undefined}>{course.campus ?? "—"}</td>
+                    <td className="truncate px-1 py-2.5 text-gray-600 dark:text-gray-300">{course.period ? `P${course.period}` : "Int."}</td>
+                    <td className="truncate px-1 py-2.5 text-gray-600 dark:text-gray-300">{course.day_of_week ? DAY_SHORT[course.day_of_week] : "—"}</td>
+                    <td className="px-2 py-2.5 text-right">
+                      <button
+                        onClick={() => handleAdd(course.id)}
+                        disabled={isPending}
+                        aria-label={`Add ${course.name}`}
+                        className="w-full rounded-lg bg-[#008482] px-1.5 py-1.5 font-semibold text-white hover:bg-[#006e6c] disabled:opacity-40"
                       >
-                        <div className="min-w-0 flex-1">
-                          <p className="font-semibold text-gray-900 dark:text-gray-100 text-xs truncate">{course.name}</p>
-                          <p className="text-gray-400 dark:text-gray-500 text-xs">
-                            {course.code}
-                            {course.day_of_week ? ` · ${DAY_SHORT[course.day_of_week]} P${course.period}` : " · Intensive"}
-                            {` · ${course.campus} · ${course.credits}cr`}
-                          </p>
-                        </div>
-                        <button
-                          onClick={() => handleAdd(course.id)}
-                          disabled={isPending}
-                          className="flex-shrink-0 text-xs bg-[#008482] text-white px-2.5 py-1 rounded-lg hover:bg-[#006e6c] disabled:opacity-40"
-                        >+ Add</button>
-                      </div>
-                    ))}
-                    {filtered.length > 100 && (
-                      <p className="text-xs text-gray-400 text-center py-3">Top 100 shown — narrow your search.</p>
-                    )}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
+                        Add
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            {filtered.length > 100 && (
+              <p className="border-t px-4 py-3 text-center text-xs text-gray-400 dark:border-gray-700">Top 100 shown — narrow your filters.</p>
+            )}
+          </div>
         </div>
 
         {/* AI Section */}
