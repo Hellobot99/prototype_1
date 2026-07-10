@@ -1,9 +1,11 @@
 import Groq from "groq-sdk";
 import { NextResponse } from "next/server";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
 export async function POST(request: Request) {
+  if (!process.env.GROQ_API_KEY) {
+    return NextResponse.json({ error: "AI features are not configured." }, { status: 503 });
+  }
+  const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
   try {
     const body = await request.json();
     const interest = body?.interest ?? "";

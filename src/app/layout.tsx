@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Course Planner",
   description: "AI-powered course planning for SIT students",
+  other: { google: "notranslate" },
 };
 
 export default function RootLayout({

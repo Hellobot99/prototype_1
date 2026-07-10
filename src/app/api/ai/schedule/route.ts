@@ -2,9 +2,11 @@ import Groq from "groq-sdk";
 import { createClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
-
 export async function POST(request: Request) {
+  if (!process.env.GROQ_API_KEY) {
+    return NextResponse.json({ error: "AI features are not configured." }, { status: 503 });
+  }
+  const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
   try {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();

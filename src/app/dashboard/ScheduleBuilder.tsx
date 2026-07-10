@@ -1,7 +1,7 @@
 "use client";
 
 import { Fragment, useState, useTransition } from "react";
-import { addCourse, removeCourse } from "./actions";
+import { saveSchedule } from "./actions";
 import AiSection from "./AiSection";
 import { validateSchedule } from "@/lib/scheduling/validator";
 
@@ -90,6 +90,9 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const [aiSuggestion, setAiSuggestion] = useState("");
   const [aiCodes, setAiCodes] = useState<string[]>([]);
   const [isPending, startTransition] = useTransition();
+  const [pendingIds, setPendingIds] = useState<string[]>(scheduledIds);
+  const isDirty = pendingIds.length !== scheduledIds.length ||
+    pendingIds.some((id) => !scheduledIds.includes(id));
 
   const aiCourses = courses.filter((c) => aiCodes.includes(c.code));
   const aiTimed = aiCourses.filter((c) => c.day_of_week && c.period);
@@ -104,8 +107,8 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const getAiCell = (day: string, period: number) =>
     aiTimed.find((c) => c.day_of_week === day && c.period === period) ?? null;
 
-  const scheduledCourses = courses.filter((c) => scheduledIds.includes(c.id));
-  const availableCourses = courses.filter((c) => !scheduledIds.includes(c.id));
+  const scheduledCourses = courses.filter((c) => pendingIds.includes(c.id));
+  const availableCourses = courses.filter((c) => !pendingIds.includes(c.id));
   const totalCredits = scheduledCourses.reduce((s, c) => s + c.credits, 0);
 
   const conflicts = validateSchedule(scheduledIds, courses);
@@ -153,10 +156,13 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const showTable = search.trim().length > 0 || filterCampus !== "all" || filterDay !== "all" || filterPeriod !== "all" || filterCredits !== "all";
 
   function handleAdd(courseId: string) {
-    startTransition(async () => { await addCourse(courseId); });
+    setPendingIds((prev) => [...new Set([...prev, courseId])]);
   }
   function handleRemove(courseId: string) {
-    startTransition(async () => { await removeCourse(courseId); });
+    setPendingIds((prev) => prev.filter((id) => id !== courseId));
+  }
+  function handleSave() {
+    startTransition(async () => { await saveSchedule(pendingIds); });
   }
 
   return (
@@ -183,11 +189,22 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
         <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl p-2 sm:p-4">
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-bold text-base text-gray-900 dark:text-gray-100">Timetable</h3>
-            {scheduledCourses.length > 0 && (
-              <span className="text-xs text-gray-500 dark:text-gray-400">
-                {scheduledCourses.length} courses · {totalCredits} credits
-              </span>
-            )}
+            <div className="flex items-center gap-3">
+              {scheduledCourses.length > 0 && (
+                <span className="text-xs text-gray-500 dark:text-gray-400">
+                  {scheduledCourses.length} courses · {totalCredits} credits
+                </span>
+              )}
+              {isDirty && (
+                <button
+                  onClick={handleSave}
+                  disabled={isPending}
+                  className="bg-[#008482] text-white text-xs font-semibold px-3 py-1.5 rounded-lg hover:bg-[#006e6c] transition disabled:opacity-50"
+                >
+                  {isPending ? "Saving..." : "Save"}
+                </button>
+              )}
+            </div>
           </div>
           {/* Mobile: day-by-day list view */}
           <div className="sm:hidden">
@@ -245,16 +262,16 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
 
           {/* Desktop: weekly grid view */}
           <div className="hidden sm:grid w-full text-xs grid-cols-[2.5rem_repeat(6,minmax(80px,1fr))]">
-            <div className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-2 text-gray-400 font-normal text-center">Period</div>
+            <div translate="no" className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-2 text-gray-400 font-normal text-center">Period</div>
             {DAYS.map((d) => (
-              <div key={d} className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-2 text-gray-700 dark:text-gray-300 font-semibold text-center">
+              <div translate="no" key={d} className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-2 text-gray-700 dark:text-gray-300 font-semibold text-center">
                 {DAY_SHORT[d]}
               </div>
             ))}
 
             {PERIODS.map((period) => (
               <Fragment key={period}>
-                <div className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-1 flex items-center justify-center text-center text-gray-400 font-medium">
+                <div translate="no" className="border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700 p-1 flex items-center justify-center text-center text-gray-400 font-medium">
                   {period}
                 </div>
                 {DAYS.map((day) => {

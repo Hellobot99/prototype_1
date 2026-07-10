@@ -24,3 +24,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Google Translate injects <font> tags inside flex/grid containers which breaks layout.
+   Force them to stay inline so flex children are not disrupted. */
+font { display: inline !important; }
+.goog-text-highlight {
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+

@@ -52,3 +52,15 @@ export async function removeCourse(courseId: string) {
 
   revalidatePath("/dashboard");
 }
+
+export async function saveSchedule(courseIds: string[]) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) return { error: "Please log in first." };
+
+  const schedule = await getOrCreateSchedule(supabase, user.id);
+  if (!schedule) return { error: "Failed to access schedule." };
+
+  await supabase.from("schedules").update({ course_ids: courseIds }).eq("id", schedule.id);
+  revalidatePath("/dashboard");
+}
