@@ -1,0 +1,28 @@
+[
+  {
+    "jik_cd": "CS101",
+    "kamoku_name_eng": "Introduction to Programming",
+    "tani_su": 2,
+    "kosya_kbn_name_eng": "Toyosu",
+    "yobi_cd": 1,
+    "jigen_cd": 1,
+    "koma_su": 1,
+    "description": "Foundations of programming using Python.",
+    "learning_goals": ["Understand basic programming logic", "Write Python scripts"],
+    "prerequisites": [],
+    "assessment": {"exam": 60, "assignments": 40}
+  },
+  {
+    "jik_cd": "CS201",
+    "kamoku_name_eng": "Data Structures",
+    "tani_su": 2,
+    "kosya_kbn_name_eng": "Toyosu",
+    "yobi_cd": 2,
+    "jigen_cd": 2,
+    "koma_su": 1,
+    "description": "Study of fundamental data structures.",
+    "learning_goals": ["Implement linked lists", "Understand Big O"],
+    "prerequisites": ["CS101"],
+    "assessment": {"exam": 50, "projects": 50}
+  }
+]
