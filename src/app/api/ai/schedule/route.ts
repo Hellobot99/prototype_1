@@ -71,10 +71,27 @@ Rules:
       parsed = JSON.parse(text);
     } catch {
       console.error("[AI schedule] JSON parse failed, raw text:", text.slice(0, 300));
-      parsed = { reply: text };
+      // Regex fallback: extract reply and recommended_codes from malformed output
+      const codesMatch = text.match(/"recommended_codes"\s*:\s*(\[[^\]]*\])/s);
+      let codes: string[] | undefined;
+      if (codesMatch) {
+        try { codes = JSON.parse(codesMatch[1]); } catch { /* ignore */ }
+      }
+      const replyMatch = text.match(/"reply"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
+      const cleanReply = replyMatch
+        ? replyMatch[1].replace(/\\n/g, " ").replace(/\\"/g, '"')
+        : text.replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/gs, "").replace(/[{}"]/g, "").trim();
+      parsed = { reply: cleanReply, recommended_codes: codes };
     }
 
-    // Ensure recommended_codes only contains strings that exist in available course codes
+    // Strip any "recommended_codes": [...] that leaked into the reply string
+    if (parsed.reply) {
+      parsed.reply = parsed.reply
+        .replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/gs, "")
+        .trim();
+    }
+
+    // Validate recommended_codes against actual available course codes
     const availableCodes = new Set(available.map((c) => c.code));
     if (parsed.recommended_codes) {
       parsed.recommended_codes = parsed.recommended_codes.filter((code) => availableCodes.has(code));
