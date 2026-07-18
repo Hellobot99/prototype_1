@@ -388,11 +388,23 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
         {aiCourses.length > 0 && (
           <div className="bg-white dark:bg-gray-800 border dark:border-gray-700 rounded-xl overflow-hidden">
             <div className="px-4 py-3 border-b dark:border-gray-700 flex items-center justify-between">
-              <div>
+              <div className="min-w-0 flex-1">
                 <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100">AI Suggested Timetable</h3>
                 {aiSuggestion && <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">{aiSuggestion}</p>}
               </div>
-              <button onClick={() => { setAiCodes([]); setAiSuggestion(""); }} className="text-gray-300 hover:text-gray-500 text-lg leading-none ml-3 flex-shrink-0">×</button>
+              <div className="flex items-center gap-2 ml-3 flex-shrink-0">
+                <button
+                  onClick={() => {
+                    const newIds = aiCourses.map((c) => c.id);
+                    setPendingIds((prev) => [...new Set([...prev, ...newIds])]);
+                  }}
+                  disabled={isPending}
+                  className="text-xs bg-[#008482] text-white px-2.5 py-1.5 rounded-lg hover:bg-[#006e6c] transition font-medium disabled:opacity-40"
+                >
+                  + Add All
+                </button>
+                <button onClick={() => { setAiCodes([]); setAiSuggestion(""); }} className="text-gray-300 hover:text-gray-500 text-lg leading-none">×</button>
+              </div>
             </div>
             <div className="p-2 sm:p-3">
               <p className="text-xs text-gray-400 mb-2">{aiCourses.length} courses · {aiCredits} credits</p>
@@ -429,9 +441,21 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                           {!course ? (
                             <p className="text-xs text-gray-300">—</p>
                           ) : (
-                            <div className="min-w-0">
-                              <p className="text-sm font-semibold text-purple-800 dark:text-purple-300 truncate">{course.name}</p>
-                              <p className="text-xs text-gray-400">{course.code} · {course.campus}</p>
+                            <div className="flex items-center justify-between gap-2 min-w-0">
+                              <div className="min-w-0">
+                                <p className="text-sm font-semibold text-purple-800 dark:text-purple-300 truncate">{course.name}</p>
+                                <p className="text-xs text-gray-400">{course.code} · {course.campus}</p>
+                              </div>
+                              {!pendingIds.includes(course.id) ? (
+                                <button
+                                  onClick={() => handleAdd(course.id)}
+                                  className="flex-shrink-0 text-xs bg-[#008482] text-white px-2 py-0.5 rounded-lg hover:bg-[#006e6c]"
+                                >
+                                  +
+                                </button>
+                              ) : (
+                                <span className="flex-shrink-0 text-xs text-green-600">✓</span>
+                              )}
                             </div>
                           )}
                         </div>
@@ -464,11 +488,23 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                           style={{ gridRow: `span ${span} / span ${span}` }}
                         >
                           {course && (
-                            <div className="bg-purple-100 rounded p-1 leading-tight h-full">
-                              <p className="font-bold text-purple-800 truncate text-xs">{course.code}</p>
-                              <p className="text-purple-600 truncate" style={{ fontSize: 9 }}>{course.name}</p>
-                              {(course.koma_su ?? 1) > 1 && (
-                                <p className="text-purple-400" style={{ fontSize: 9 }}>P{course.period}–{(course.period ?? 0) + (course.koma_su ?? 1) - 1}</p>
+                            <div className="bg-purple-100 dark:bg-purple-900 rounded p-1 leading-tight h-full flex flex-col justify-between">
+                              <div>
+                                <p className="font-bold text-purple-800 dark:text-purple-200 truncate text-xs">{course.code}</p>
+                                <p className="text-purple-600 dark:text-purple-300 truncate" style={{ fontSize: 9 }}>{course.name}</p>
+                                {(course.koma_su ?? 1) > 1 && (
+                                  <p className="text-purple-400" style={{ fontSize: 9 }}>P{course.period}–{(course.period ?? 0) + (course.koma_su ?? 1) - 1}</p>
+                                )}
+                              </div>
+                              {!pendingIds.includes(course.id) ? (
+                                <button
+                                  onClick={() => handleAdd(course.id)}
+                                  className="mt-0.5 text-[9px] font-bold text-purple-600 dark:text-purple-300 hover:text-[#008482] leading-none text-left"
+                                >
+                                  + Add
+                                </button>
+                              ) : (
+                                <p className="mt-0.5 text-[9px] text-green-600 dark:text-green-400 leading-none">✓ Added</p>
                               )}
                             </div>
                           )}
@@ -484,8 +520,16 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
                   <p className="text-xs font-semibold text-purple-500 mb-1.5">Intensive / No Fixed Schedule ({aiUntimed.length})</p>
                   <div className="flex flex-wrap gap-1.5">
                     {aiUntimed.map((c) => (
-                      <span key={c.id} className="bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 text-xs px-2.5 py-1 rounded-full border border-purple-200 dark:border-purple-800">
+                      <span key={c.id} className="inline-flex items-center gap-1.5 bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 text-xs px-2.5 py-1 rounded-full border border-purple-200 dark:border-purple-800">
                         {c.code} · {c.name} · {c.credits}cr
+                        {!pendingIds.includes(c.id) ? (
+                          <button
+                            onClick={() => handleAdd(c.id)}
+                            className="font-bold hover:text-[#008482] leading-none"
+                          >+</button>
+                        ) : (
+                          <span className="text-green-600 dark:text-green-400">✓</span>
+                        )}
                       </span>
                     ))}
                   </div>
