@@ -99,7 +99,7 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
   const availableCourses = courses.filter((c) => !pendingIds.includes(c.id));
   const totalCredits = scheduledCourses.reduce((s, c) => s + c.credits, 0);
 
-  const conflicts = validateSchedule(scheduledIds, courses);
+  const conflicts = validateSchedule(pendingIds, courses);
   const campusErrors = conflicts.filter((c) => c.type === "campus_conflict" && c.severity === "error");
   const campusWarnings = conflicts.filter((c) => c.type === "campus_conflict" && c.severity === "warning");
   // each conflict is reported from both courses' perspectives, so de-dupe pairs for display

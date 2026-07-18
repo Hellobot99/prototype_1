@@ -41,7 +41,12 @@ Include a mix of Japanese companies (e.g. Toyota, Sony, NTT, Fujitsu, Rakuten, M
 
     let text = completion.choices[0]?.message?.content ?? "";
     text = text.replace(/^```json\n?/, "").replace(/\n?```$/, "").trim();
-    return NextResponse.json(JSON.parse(text));
+    try {
+      return NextResponse.json(JSON.parse(text));
+    } catch {
+      console.error("[Careers] JSON parse failed:", text.slice(0, 300));
+      return NextResponse.json({ error: "Failed to parse AI response. Please try again." }, { status: 500 });
+    }
   } catch (err: unknown) {
     console.error("[Careers error]", err);
     return NextResponse.json({ error: "Failed to find related careers. Please try again." }, { status: 500 });

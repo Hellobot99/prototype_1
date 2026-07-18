@@ -386,7 +386,7 @@ export default function CoursesContent({ courses, completedMap, scheduledIds }: 
                           value={info?.semester ?? ""}
                           onChange={(e) => handleField(course.id, "semester", e.target.value)}
                           disabled={isPending}
-                          className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white text-gray-700 disabled:opacity-50"
+                          className="text-xs border dark:border-gray-600 rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 disabled:opacity-50"
                         >
                           <option value="">Semester —</option>
                           {SEMESTERS.map((s) => (
@@ -397,7 +397,7 @@ export default function CoursesContent({ courses, completedMap, scheduledIds }: 
                           value={info?.grade ?? ""}
                           onChange={(e) => handleField(course.id, "grade", e.target.value)}
                           disabled={isPending}
-                          className="text-xs border rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white text-gray-700 disabled:opacity-50"
+                          className="text-xs border dark:border-gray-600 rounded-md px-1.5 py-1 outline-none focus:ring-1 focus:ring-[#008482] bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 disabled:opacity-50"
                         >
                           <option value="">Grade —</option>
                           {GRADES.map((g) => (

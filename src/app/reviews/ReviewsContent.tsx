@@ -226,7 +226,7 @@ export default function ReviewsContent({ reviews, courses }: ReviewsContentProps
                   <p className="text-gray-400 text-sm">No reviews for this course yet.</p>
                   <button
                     onClick={() => setShowModal(true)}
-                    className="mt-3 text-sm text-black underline"
+                    className="mt-3 text-sm text-gray-700 dark:text-gray-300 underline"
                   >
                     Be the first to write one
                   </button>

@@ -68,7 +68,12 @@ Respond ONLY with valid JSON (no markdown):
 
     let text = completion.choices[0]?.message?.content ?? "";
     text = text.replace(/^```json\n?/, "").replace(/\n?```$/, "").trim();
-    return NextResponse.json(JSON.parse(text));
+    try {
+      return NextResponse.json(JSON.parse(text));
+    } catch {
+      console.error("[Career path] JSON parse failed:", text.slice(0, 300));
+      return NextResponse.json({ error: "Failed to parse AI response. Please try again." }, { status: 500 });
+    }
   } catch (err: unknown) {
     console.error("[Career path error]", err);
     return NextResponse.json({ error: "Failed to generate course recommendations. Please try again." }, { status: 500 });
