@@ -100,7 +100,7 @@ export default function AiSection({ onResult }: AiSectionProps) {
             }`}>
               {msg.content}
               {msg.codes && msg.codes.length > 0 && (
-                <p className="text-xs mt-1 opacity-60">↑ Timetable updated ({msg.codes.length} courses)</p>
+                <p className="text-xs mt-1 opacity-60">↑ Timetable updated</p>
               )}
             </div>
           </div>

@@ -480,10 +480,15 @@ export default function ScheduleBuilder({ courses, scheduledIds }: ScheduleBuild
               </div>
 
               {aiUntimed.length > 0 && (
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {aiUntimed.map((c) => (
-                    <span key={c.id} className="bg-purple-100 text-purple-700 text-xs px-2 py-0.5 rounded-full">{c.code} · {c.name}</span>
-                  ))}
+                <div className="mt-3 border-t border-purple-100 dark:border-purple-900 pt-3">
+                  <p className="text-xs font-semibold text-purple-500 mb-1.5">Intensive / No Fixed Schedule ({aiUntimed.length})</p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {aiUntimed.map((c) => (
+                      <span key={c.id} className="bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 text-xs px-2.5 py-1 rounded-full border border-purple-200 dark:border-purple-800">
+                        {c.code} · {c.name} · {c.credits}cr
+                      </span>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
