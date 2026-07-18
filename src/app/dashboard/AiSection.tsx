@@ -14,8 +14,13 @@ interface AiSectionProps {
 
 const MAX_HISTORY = 8;
 
+const GREETING: Message = {
+  role: "assistant",
+  content: "Hi! Before I suggest a timetable, could you tell me a bit about yourself? For example: your year of study, your major or department, how many credits you're aiming for, and any topics you're interested in this semester.",
+};
+
 export default function AiSection({ onResult }: AiSectionProps) {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const [messages, setMessages] = useState<Message[]>([GREETING]);
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -75,9 +80,9 @@ export default function AiSection({ onResult }: AiSectionProps) {
           <h3 className="font-semibold text-sm text-gray-900 dark:text-gray-100">AI Schedule Assistant</h3>
           <p className="text-xs text-gray-400">Describe your goals to get a personalized timetable.</p>
         </div>
-        {messages.length > 0 && (
+        {messages.length > 1 && (
           <button
-            onClick={() => { setMessages([]); onResult("", []); }}
+            onClick={() => { setMessages([GREETING]); onResult("", []); }}
             className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
           >
             Clear
@@ -86,11 +91,6 @@ export default function AiSection({ onResult }: AiSectionProps) {
       </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
-        {messages.length === 0 && (
-          <p className="text-xs text-gray-400 text-center mt-10">
-            e.g. &quot;I want to focus on AI and robotics this semester&quot;
-          </p>
-        )}
         {messages.map((msg, i) => (
           <div key={i} className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
             <div className={`max-w-[85%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
