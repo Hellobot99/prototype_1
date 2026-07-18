@@ -2,6 +2,39 @@ import Groq from "groq-sdk";
 import { createClient } from "@/lib/supabase/server";
 import { NextResponse } from "next/server";
 
+// Field → keyword patterns for pre-filtering courses by name
+const FIELD_PATTERNS: Record<string, RegExp> = {
+  cs:      /program|algorith|software|comput|network|web|database|data.struct|information.system|digital|machine.learn|artificial.intel|deep.learn|neural|robot|signal|logic|operat|system|cyber|secur|coding|code|simulat|parallel|embed|compiler|os\b|iot|cloud|devops/i,
+  ai:      /artificial|intelligen|machine.learn|deep.learn|neural|robot|vision|nlp|natural.language|data.sci|pattern|recogni|optim/i,
+  math:    /calcul|algebra|statistic|probabilit|linear|discrete|differential|matrix|numeric|analysis|mathemat/i,
+  physics: /physic|mechanic|quantum|electro|thermodynam|optic|wave|fluid/i,
+  web:     /web|html|css|javascript|frontend|backend|ui|ux|interface|internet/i,
+  data:    /data|database|sql|big.data|analytic|statistic|mining|warehouse/i,
+  network: /network|protocol|tcp|ip|wireless|mobile|communication|telecom/i,
+  english: /english|presentat|writing|communication|language/i,
+};
+
+function scoreCourseName(name: string, userText: string): number {
+  const lower = userText.toLowerCase();
+  // Check which fields the user mentioned
+  let fieldScore = 0;
+  for (const [, pattern] of Object.entries(FIELD_PATTERNS)) {
+    if (pattern.test(lower)) {
+      if (pattern.test(name)) fieldScore += 2;
+    }
+  }
+
+  // Direct word overlap: words the user typed that appear in course name
+  const userWords = lower
+    .split(/\W+/)
+    .filter((w) => w.length >= 4)
+    .map((w) => w.replace(/(ing|tion|ment|ics|ity)$/, ""));
+  const nameLower = name.toLowerCase();
+  const overlapScore = userWords.filter((w) => nameLower.includes(w)).length;
+
+  return fieldScore + overlapScore;
+}
+
 export async function POST(request: Request) {
   if (!process.env.GROQ_API_KEY) {
     return NextResponse.json({ error: "AI features are not configured." }, { status: 503 });
@@ -25,14 +58,34 @@ export async function POST(request: Request) {
     const available = (courses ?? []).filter((c) => !completedIds.has(c.id));
     const completedCourses = (courses ?? []).filter((c) => completedIds.has(c.id));
 
-    const courseList = available.length > 0
-      ? available.map((c) => {
-          let line = `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week ?? "Intensive"} P${c.period ?? "-"})`;
-          if (c.description) line += ` — ${c.description}`;
-          if (c.prerequisites?.length) line += ` [Prereqs: ${c.prerequisites.join(", ")}]`;
-          if (c.learning_goals?.length) line += ` [Goals: ${c.learning_goals.slice(0, 2).join("; ")}]`;
-          return line;
-        }).join("\n")
+    // Build combined user text from recent conversation for relevance scoring
+    const userText = messages
+      .filter((m) => m.role === "user")
+      .slice(-5)
+      .map((m) => m.content)
+      .join(" ");
+
+    // Score and sort courses by relevance to user's stated interests
+    const scored = available
+      .map((c) => ({ ...c, _score: scoreCourseName(c.name, userText) }))
+      .sort((a, b) => b._score - a._score);
+
+    // Send relevant courses (score > 0) first; if fewer than 30, pad with others
+    const relevant = scored.filter((c) => c._score > 0);
+    const others   = scored.filter((c) => c._score === 0);
+    const toSend   = relevant.length >= 10
+      ? relevant                            // enough relevant → only relevant
+      : [...relevant, ...others.slice(0, 40 - relevant.length)]; // pad to 40
+
+    const formatCourse = (c: typeof toSend[number]) => {
+      let line = `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week ?? "Intensive"} P${c.period ?? "-"})`;
+      if (c.description) line += ` — ${c.description}`;
+      if (c.prerequisites?.length) line += ` [Prereqs: ${c.prerequisites.join(", ")}]`;
+      return line;
+    };
+
+    const courseList = toSend.length > 0
+      ? toSend.map(formatCourse).join("\n")
       : "No courses available.";
 
     const completedList = completedCourses.length > 0
@@ -44,7 +97,7 @@ export async function POST(request: Request) {
 Already completed by this student (do NOT recommend these):
 ${completedList}
 
-Available courses (use EXACT codes):
+Available courses most relevant to this student (use EXACT codes):
 ${courseList}
 
 RESPONSE FORMAT — always reply with valid JSON only, no markdown fences:
@@ -56,24 +109,22 @@ RESPONSE FORMAT — always reply with valid JSON only, no markdown fences:
 Rules for "reply":
 - Keep it to 2-3 sentences max.
 - Explain WHY these courses fit the student's goal.
-- Do NOT list course codes or timetable details — the UI displays them automatically.
-- If the student's request is too vague, ask ONE clarifying question.
+- Do NOT list course codes or timetable details — the UI shows them.
+- If there are genuinely few matching courses, say so honestly.
 
 Rules for "recommended_codes":
-- CRITICAL: Read each course name carefully before recommending. Only select courses whose name clearly matches the student's stated field or interest.
-  * Computer science / programming / AI / software → names like: Programming, Algorithm, Data Structure, Software, Computer, AI, Machine Learning, Network, Web, Database, Information System, Digital, Computing, Simulation, Robotics, Signal Processing
-  * Do NOT recommend courses from unrelated disciplines (Chemistry, Biology, Civil Engineering, Architecture, Fluid, Materials, etc.) just to fill the credit count. It is better to recommend fewer courses than to recommend irrelevant ones.
-- If there are not enough relevant courses, recommend only the ones that match and tell the student honestly.
-- Use EXACT codes from the available list above.
-- Aim for 14–20 credits per semester (adjust based on student preference).
-- Avoid recommending courses whose prerequisites haven't been completed yet.
-- Minimize same-day campus switches between Toyosu and Omiya.
+- Use EXACT codes from the list above only.
+- ONLY recommend courses whose name clearly relates to the student's stated field. Do NOT recommend unrelated courses (Chemistry, Biology, Civil Eng, etc.) just to fill credits.
+- Aim for 14–20 credits. If fewer relevant courses exist, recommend only the relevant ones.
+- Avoid courses whose prerequisites the student hasn't completed.
+- Minimize same-day Toyosu ↔ Omiya campus switches.
 - Spread courses across different days where possible.
-- When the conversation history shows "[Currently recommended courses: ...]", KEEP those courses and only ADD new ones unless the student asks to start over.
-- If no schedule update is needed, set "recommended_codes" to [].`;
+- When history shows "[Currently recommended courses: ...]", KEEP those and only ADD new ones unless the student asks to start over.
+- If no update is needed, set "recommended_codes" to [].`;
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
+      temperature: 0,
       max_tokens: 1024,
       messages: [
         { role: "system", content: systemPrompt },
@@ -101,14 +152,12 @@ Rules for "recommended_codes":
       parsed = { reply: cleanReply, recommended_codes: codes };
     }
 
-    // Strip any "recommended_codes": [...] that leaked into the reply string
     if (parsed.reply) {
       parsed.reply = parsed.reply
         .replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/g, "")
         .trim();
     }
 
-    // Validate recommended_codes against actual available course codes
     const availableCodes = new Set(available.map((c) => c.code));
     if (parsed.recommended_codes) {
       parsed.recommended_codes = parsed.recommended_codes.filter((code) => availableCodes.has(code));
