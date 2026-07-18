@@ -35,7 +35,12 @@ export default function AiSection({ onResult }: AiSectionProps) {
     setLoading(true);
     setError("");
 
-    const history = newMessages.slice(-MAX_HISTORY).map(({ role, content }) => ({ role, content }));
+    const history = newMessages.slice(-MAX_HISTORY).map(({ role, content, codes }) => ({
+      role,
+      content: role === "assistant" && codes?.length
+        ? `${content}\n[Currently recommended courses: ${codes.join(", ")}]`
+        : content,
+    }));
 
     try {
       const res = await fetch("/api/ai/schedule", {

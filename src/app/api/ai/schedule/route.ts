@@ -51,7 +51,7 @@ Rules:
 - "reply" must ONLY contain reasoning and explanation (1-3 sentences). Never list course codes or timetable details in "reply".
 - "recommended_codes" must use the EXACT course codes from the available courses list above.
 - Always include "recommended_codes" whenever you suggest a schedule.
-- If the student requests adjustments, update "recommended_codes" accordingly.
+- IMPORTANT: If the conversation history shows "[Currently recommended courses: ...]", those are the courses already on the student's timetable. When the student asks to ADD a topic or course, keep all existing recommended courses AND add the new ones. Only replace the full list if the student explicitly asks to start over or create a completely new schedule.
 - If no schedule change is needed (e.g. a simple question), set "recommended_codes" to [].`;
 
     const completion = await groq.chat.completions.create({
