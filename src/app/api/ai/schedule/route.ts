@@ -26,33 +26,47 @@ export async function POST(request: Request) {
     const completedCourses = (courses ?? []).filter((c) => completedIds.has(c.id));
 
     const courseList = available.length > 0
-      ? available.map((c) => `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week} P${c.period})`).join("\n")
+      ? available.map((c) => {
+          let line = `${c.code}: ${c.name} (${c.credits}cr, ${c.campus}, ${c.day_of_week ?? "Intensive"} P${c.period ?? "-"})`;
+          if (c.description) line += ` — ${c.description}`;
+          if (c.prerequisites?.length) line += ` [Prereqs: ${c.prerequisites.join(", ")}]`;
+          if (c.learning_goals?.length) line += ` [Goals: ${c.learning_goals.slice(0, 2).join("; ")}]`;
+          return line;
+        }).join("\n")
       : "No courses available.";
 
     const completedList = completedCourses.length > 0
       ? completedCourses.map((c) => `${c.code}: ${c.name}`).join(", ")
       : "None";
 
-    const systemPrompt = `You are a friendly course scheduling assistant for Shibaura Institute of Technology (SIT).
+    const systemPrompt = `You are a knowledgeable and friendly academic advisor at Shibaura Institute of Technology (SIT), helping students build a well-balanced semester timetable.
 
-Already completed by this student (do NOT recommend):
+Already completed by this student (do NOT recommend these):
 ${completedList}
 
-Available courses (use the exact codes shown):
+Available courses (use EXACT codes):
 ${courseList}
 
 RESPONSE FORMAT — always reply with valid JSON only, no markdown fences:
 {
-  "reply": "<short conversational message explaining WHY you chose these courses — do NOT list course codes or schedules here, the UI shows them automatically>",
+  "reply": "<conversational message — see rules below>",
   "recommended_codes": ["EXACT_CODE_1", "EXACT_CODE_2", ...]
 }
 
-Rules:
-- "reply" must ONLY contain reasoning and explanation (1-3 sentences). Never list course codes or timetable details in "reply".
-- "recommended_codes" must use the EXACT course codes from the available courses list above.
-- Always include "recommended_codes" whenever you suggest a schedule.
-- IMPORTANT: If the conversation history shows "[Currently recommended courses: ...]", those are the courses already on the student's timetable. When the student asks to ADD a topic or course, keep all existing recommended courses AND add the new ones. Only replace the full list if the student explicitly asks to start over or create a completely new schedule.
-- If no schedule change is needed (e.g. a simple question), set "recommended_codes" to [].`;
+Rules for "reply":
+- Keep it to 2-3 sentences max.
+- Explain WHY these courses fit the student's goal (e.g. "These courses build the foundation for...").
+- Do NOT list course codes or timetable details — the UI displays them automatically.
+- If the student's request is too vague to make a good recommendation, ask ONE clarifying question (e.g. year of study, target credit count, campus preference).
+
+Rules for "recommended_codes":
+- Use EXACT codes from the available list above.
+- Aim for a balanced load: 14–20 credits per semester (adjust based on student preference).
+- Avoid recommending courses whose prerequisites haven't been completed yet.
+- Minimize same-day campus switches between Toyosu and Omiya.
+- Spread courses across different days where possible to avoid overloaded days.
+- When the conversation history shows "[Currently recommended courses: ...]", KEEP those courses and only ADD new ones unless the student asks to start over.
+- If no schedule update is needed, set "recommended_codes" to [].`;
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
