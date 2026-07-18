@@ -86,22 +86,22 @@ Rules for "recommended_codes":
     } catch {
       console.error("[AI schedule] JSON parse failed, raw text:", text.slice(0, 300));
       // Regex fallback: extract reply and recommended_codes from malformed output
-      const codesMatch = text.match(/"recommended_codes"\s*:\s*(\[[^\]]*\])/s);
+      const codesMatch = text.match(/"recommended_codes"\s*:\s*(\[[^\]]*\])/);
       let codes: string[] | undefined;
       if (codesMatch) {
         try { codes = JSON.parse(codesMatch[1]); } catch { /* ignore */ }
       }
-      const replyMatch = text.match(/"reply"\s*:\s*"((?:[^"\\]|\\.)*)"/s);
+      const replyMatch = text.match(/"reply"\s*:\s*"((?:[^"\\]|\\.)*)"/);
       const cleanReply = replyMatch
         ? replyMatch[1].replace(/\\n/g, " ").replace(/\\"/g, '"')
-        : text.replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/gs, "").replace(/[{}"]/g, "").trim();
+        : text.replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/g, "").replace(/[{}"]/g, "").trim();
       parsed = { reply: cleanReply, recommended_codes: codes };
     }
 
     // Strip any "recommended_codes": [...] that leaked into the reply string
     if (parsed.reply) {
       parsed.reply = parsed.reply
-        .replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/gs, "")
+        .replace(/"recommended_codes"\s*:\s*\[[^\]]*\]/g, "")
         .trim();
     }
 
