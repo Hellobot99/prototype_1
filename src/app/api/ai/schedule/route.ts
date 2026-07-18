@@ -33,26 +33,26 @@ export async function POST(request: Request) {
       ? completedCourses.map((c) => `${c.code}: ${c.name}`).join(", ")
       : "None";
 
-    const systemPrompt = `You are a friendly course scheduling assistant for Shibaura Institute of Technology (SIT). Help students plan their timetable through conversation.
+    const systemPrompt = `You are a friendly course scheduling assistant for Shibaura Institute of Technology (SIT).
 
 Already completed by this student (do NOT recommend):
 ${completedList}
 
-Available courses:
+Available courses (use the exact codes shown):
 ${courseList}
 
-Rules:
-- When recommending a schedule, always include "recommended_codes" in your response.
-- If the student asks follow-up questions or wants adjustments, update the recommendation accordingly.
-- Keep replies concise and friendly.
-
-Always respond with valid JSON only (no markdown):
+RESPONSE FORMAT — always reply with valid JSON only, no markdown fences:
 {
-  "reply": "Your conversational reply here",
-  "recommended_codes": ["CODE1", "CODE2"]
+  "reply": "<short conversational message explaining WHY you chose these courses — do NOT list course codes or schedules here, the UI shows them automatically>",
+  "recommended_codes": ["EXACT_CODE_1", "EXACT_CODE_2", ...]
 }
 
-If no schedule update is needed, omit "recommended_codes" or set it to an empty array.`;
+Rules:
+- "reply" must ONLY contain reasoning and explanation (1-3 sentences). Never list course codes or timetable details in "reply".
+- "recommended_codes" must use the EXACT course codes from the available courses list above.
+- Always include "recommended_codes" whenever you suggest a schedule.
+- If the student requests adjustments, update "recommended_codes" accordingly.
+- If no schedule change is needed (e.g. a simple question), set "recommended_codes" to [].`;
 
     const completion = await groq.chat.completions.create({
       model: "llama-3.3-70b-versatile",
@@ -70,7 +70,14 @@ If no schedule update is needed, omit "recommended_codes" or set it to an empty 
     try {
       parsed = JSON.parse(text);
     } catch {
+      console.error("[AI schedule] JSON parse failed, raw text:", text.slice(0, 300));
       parsed = { reply: text };
+    }
+
+    // Ensure recommended_codes only contains strings that exist in available course codes
+    const availableCodes = new Set(available.map((c) => c.code));
+    if (parsed.recommended_codes) {
+      parsed.recommended_codes = parsed.recommended_codes.filter((code) => availableCodes.has(code));
     }
 
     return NextResponse.json(parsed);
