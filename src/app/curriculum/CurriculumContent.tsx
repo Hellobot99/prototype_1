@@ -10,7 +10,7 @@ interface CurriculumCourse {
   yr: number;
   sem: string;
   req: string;
-  courses: string;
+  courses: string | string[];
 }
 
 interface Curriculum {
