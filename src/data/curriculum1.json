@@ -1,0 +1,2491 @@
+{
+ "university": "芝浦工業大学 建築学部 建築学科",
+ "year": 2024,
+ "graduation": {
+  "credits": 124,
+  "gpa": 2.0,
+  "thesis_start": "3年終了時110単位",
+  "promotion_stop": "2年終了時62単位未満"
+ },
+ "req_legend": {
+  "required": "必修",
+  "course_required": "コース必修",
+  "elective": "選択",
+  "free": "自由"
+ },
+ "courses": [
+  {
+   "no": "S2014000",
+   "name": "線形代数1",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2020000",
+   "name": "線形代数2",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2027000",
+   "name": "微分積分及び演習1",
+   "cat": "数理基礎科目",
+   "cr": 3,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2033000",
+   "name": "微分積分及び演習2",
+   "cat": "数理基礎科目",
+   "cr": 3,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2045000",
+   "name": "統計学基礎",
+   "cat": "数理基礎科目",
+   "cr": 1,
+   "yr": 1,
+   "sem": "後",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2050000",
+   "name": "微分方程式",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2056000",
+   "name": "ベクトル解析",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2063000",
+   "name": "応用解析概論",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2076000",
+   "name": "物理学入門",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2079000",
+   "name": "基礎力学",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2082000",
+   "name": "基礎力学演習",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2085000",
+   "name": "基礎環境化学",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2094000",
+   "name": "基礎熱統計力学",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2097000",
+   "name": "基礎熱統計力学演習",
+   "cat": "数理基礎科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2210000",
+   "name": "Listening and Speaking",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2213000",
+   "name": "Reading and Writing",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2220000",
+   "name": "Reading",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2226000",
+   "name": "Writing",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2228000",
+   "name": "PresentationⅠ",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2231000",
+   "name": "PresentationⅡ",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2241000",
+   "name": "TOEIC 1",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2243000",
+   "name": "TOEIC 2",
+   "cat": "外国語科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2410000",
+   "name": "情報リテラシ",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2412000",
+   "name": "データサイエンスリテラシー",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 1,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2419000",
+   "name": "情報時代の地域・都市",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2423000",
+   "name": "哲学・倫理学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2428000",
+   "name": "技術者の倫理",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2434000",
+   "name": "生命倫理",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2437000",
+   "name": "日本国憲法",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2440000",
+   "name": "知的財産法",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2443000",
+   "name": "法学入門",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2446000",
+   "name": "民法",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2449000",
+   "name": "地方自治論",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2452000",
+   "name": "社会学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2455000",
+   "name": "ジェンダー論",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2458000",
+   "name": "地域社会学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2461000",
+   "name": "生産と消費の環境論",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2473000",
+   "name": "人間社会と環境問題",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2476000",
+   "name": "地域と環境",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2479000",
+   "name": "福祉と技術",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2485000",
+   "name": "都市と文学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2488000",
+   "name": "現代日本の社会",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2489000",
+   "name": "グローバリゼーション論",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2491000",
+   "name": "芸術学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2494000",
+   "name": "文化人類学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2497000",
+   "name": "比較文化論",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2503000",
+   "name": "現代の日本経済",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2505000",
+   "name": "経済学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2512000",
+   "name": "応用経済学",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2518000",
+   "name": "プレゼンテーション入門",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2521000",
+   "name": "レポートライティング",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2524000",
+   "name": "地域・社会調査入門",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2527000",
+   "name": "地域と経済",
+   "cat": "人文社会・情報系教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2611000",
+   "name": "スポーツ科学実技1",
+   "cat": "体育・健康科目",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2621000",
+   "name": "スポーツ科学実技2",
+   "cat": "体育・健康科目",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2632000",
+   "name": "スポーツ科学実技3",
+   "cat": "体育・健康科目",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2642000",
+   "name": "スポーツ科学実技4",
+   "cat": "体育・健康科目",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2682000",
+   "name": "スポーツバイオメカニクス",
+   "cat": "体育・健康科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2688000",
+   "name": "スポーツ健康学",
+   "cat": "体育・健康科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S2694000",
+   "name": "コンディショニング演習",
+   "cat": "体育・健康科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099002",
+   "name": "芝浦工業大学通論",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10017002",
+   "name": "ダイバーシティ入門",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099042",
+   "name": "アントレプレナーシップ入門",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099072",
+   "name": "アントレプレナーシップ応用",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10017102",
+   "name": "消費者行動論",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10017202",
+   "name": "マーケティング概論",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10017302",
+   "name": "デジタルプレゼンテーション",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099012",
+   "name": "Japanese LanguageⅠ",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099022",
+   "name": "Japanese LanguageⅡ",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099032",
+   "name": "Japanese LanguageⅢ",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "10099062",
+   "name": "Japanese LanguageⅣ",
+   "cat": "その他の基礎・教養科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000001",
+   "name": "学外英語検定",
+   "cat": "学科課程外",
+   "cr": 2,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000002",
+   "name": "海外語学演習(短期)1",
+   "cat": "学科課程外",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000003",
+   "name": "海外語学演習(短期)2",
+   "cat": "学科課程外",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000004",
+   "name": "海外語学演習(短期)3",
+   "cat": "学科課程外",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000005",
+   "name": "海外語学演習(短期)4",
+   "cat": "学科課程外",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000006",
+   "name": "海外語学演習1",
+   "cat": "学科課程外",
+   "cr": 2,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000007",
+   "name": "海外語学演習2",
+   "cat": "学科課程外",
+   "cr": 2,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000008",
+   "name": "海外語学演習3",
+   "cat": "学科課程外",
+   "cr": 2,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "W0000009",
+   "name": "海外語学演習4",
+   "cat": "学科課程外",
+   "cr": 2,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "S0010000/S0010001/S0010002",
+   "name": "建築デザイン基礎1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0013000/S0013001/S0013002",
+   "name": "建築デザイン入門",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0016000/S0016001/S0016002",
+   "name": "居住空間史",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0019002",
+   "name": "力学の基礎",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "UA"
+   ]
+  },
+  {
+   "no": "S0022000/S0022000/S0022000",
+   "name": "デザイン史",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0025000/S0025001/S0025002",
+   "name": "建築デザイン基礎2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0034000",
+   "name": "建築スタジオ演習1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0028001",
+   "name": "空間建築デザイン演習1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0031002",
+   "name": "都市建築デザイン演習1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "UA"
+   ]
+  },
+  {
+   "no": "S0037000/S0037001/S0037002",
+   "name": "建築の形態と空間",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0040000/S0040002",
+   "name": "建築ものづくり",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0043000/S0043001/S0043002",
+   "name": "建築環境工学1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0046000/S0046001/S0046002",
+   "name": "構造力学・演習",
+   "cat": "専門",
+   "cr": 3,
+   "yr": 1,
+   "sem": "後",
+   "req": "required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0049001",
+   "name": "建築計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0210000/S0210000/S0210000",
+   "name": "住生活論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0219000",
+   "name": "建築スタジオ演習2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "course_required",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0213001",
+   "name": "空間建築デザイン演習2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "course_required",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0216002",
+   "name": "都市建築デザイン演習2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "course_required",
+   "courses": [
+    "UA"
+   ]
+  },
+  {
+   "no": "S0222000/S0222001/S0222002",
+   "name": "CAD・CG演習",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0225000/S0225001",
+   "name": "建築設計計画論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0228000/S0228002",
+   "name": "建築計画1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0231000/S0231001/S0231002",
+   "name": "都市地域計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0234000/S0234001/S0234002",
+   "name": "西洋建築史",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0237000/S0237001/S0237002",
+   "name": "建築環境工学2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0240000/S0240001/S0240002",
+   "name": "材料力学・演習",
+   "cat": "専門",
+   "cr": 3,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0243000/S0243001/S0243002",
+   "name": "建築構造計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0246000/S0246001/S0246002",
+   "name": "構造材料",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0249000/S0249000/S0249000",
+   "name": "色彩・素材論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0252000/S0252000/S0252000",
+   "name": "建築環境心理学",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0261000",
+   "name": "建築スタジオ演習3",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "course_required",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0255001",
+   "name": "空間建築デザイン演習3",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "course_required",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0258002",
+   "name": "都市建築デザイン演習3",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "course_required",
+   "courses": [
+    "UA"
+   ]
+  },
+  {
+   "no": "S0267001",
+   "name": "建築設計論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0270000/S0270002",
+   "name": "地域マネジメント",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0273000/S0273001",
+   "name": "地域設計論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0279001",
+   "name": "建築構法",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0282000/S0282001/S0282002",
+   "name": "日本建築史",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0285000/S0285002",
+   "name": "木造建築",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0288000/S0288001/S0288002",
+   "name": "BIM演習1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0291000/S0291001/S0291002",
+   "name": "建築設備",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0294000/S0294001/S0294002",
+   "name": "建築構造解析・演習",
+   "cat": "専門",
+   "cr": 3,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0297000/S0297001/S0297002",
+   "name": "仕上げ材料",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0300000/S0300001/S0300002",
+   "name": "建築エネルギー計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0410000/S0410001/S0410002",
+   "name": "空調システム計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0413000/S0413000/S0413000",
+   "name": "都市環境設備計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0422000",
+   "name": "建築スタジオ演習4A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0416001",
+   "name": "空間建築デザイン演習4A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0419002",
+   "name": "都市建築デザイン演習4A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "UA"
+   ]
+  },
+  {
+   "no": "S0518001",
+   "name": "空間地域デザイン演習",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "SA"
+   ]
+  },
+  {
+   "no": "S0425002",
+   "name": "都市地域デザイン演習",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "UA"
+   ]
+  },
+  {
+   "no": "S0431000/S0431001",
+   "name": "近代建築と技術",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0434000/S0434002",
+   "name": "近代建築作家論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0438000/S0438001",
+   "name": "ユニバーサル施設計画論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0440000/S0440001",
+   "name": "建築法規",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0443000/S0443001",
+   "name": "都市住宅論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0446000/S0446002",
+   "name": "都市デザイン論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0452000/S0452001",
+   "name": "建築生産",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0455000/S0455002",
+   "name": "建築プロジェクトマネジメント",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0458000/S0458001/S0458002",
+   "name": "BIM演習2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0461000/S0461002",
+   "name": "建築構工法1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0464000/S0464001/S0464002",
+   "name": "建築振動解析",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0467000/S0467001/S0467002",
+   "name": "鉄筋コンクリート造の設計1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0470000/S0470001/S0470002",
+   "name": "鋼構造の設計",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0473000/S0473001/S0473002",
+   "name": "建築環境実験",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0476000/S0476001",
+   "name": "建築材料施工実験",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0479000/S0479001",
+   "name": "建築構造実験",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0482000/S0482002",
+   "name": "建築材料構造実験",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0485000/S0485001/S0485002",
+   "name": "プロジェクトゼミ",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "course_required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0488000/S0488000/S0488000",
+   "name": "建築英語",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0491000/S0491000/S0491000",
+   "name": "GIS演習",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0494000/S0494000/S0494000",
+   "name": "建築音響計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0497000/S0497000/S0497000",
+   "name": "給排水システム計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0500000/S0500000/S0500000",
+   "name": "光環境計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0503000/S0503000/S0503000",
+   "name": "基礎構造",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0506000/S0506000/S0506000",
+   "name": "鉄筋コンクリート造の設計2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0509000/S0509000/S0509000",
+   "name": "マトリックス構造解析",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0512000/S0512000/S0512000",
+   "name": "建築防災",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0515000/S0515000/S0515000",
+   "name": "維持保全・改修",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0521000/S0521001",
+   "name": "ランドスケープ論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0524000/S0524002",
+   "name": "建築計画2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0528000/S0528002",
+   "name": "建築保全再生計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0530000/S0530002",
+   "name": "建築・都市法規",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0533000/S0533002",
+   "name": "都市再生マネジメント",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0536000/S0536002",
+   "name": "都市防災計画",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0539000/S0539001/S0539002",
+   "name": "建築文化史",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0542000/S0542001/S0542002",
+   "name": "近代建築史",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0545000/S0545001/S0545002",
+   "name": "施工計画・管理",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0548000/S0548001/S0548002",
+   "name": "建築経済",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0551000/S0551001",
+   "name": "木造建築の設計",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0554000/S0554002",
+   "name": "建築構工法2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0557000/S0557001/S0557002",
+   "name": "建築環境学",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0610000/S0610001",
+   "name": "建築家職能論",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 4,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA"
+   ]
+  },
+  {
+   "no": "S0613000/S0613000/S0613000",
+   "name": "卒業研究1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 4,
+   "sem": "前後",
+   "req": "required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0616000/S0616000/S0616000",
+   "name": "卒業研究2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 4,
+   "sem": "前後",
+   "req": "required",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0810000/S0810001/S0810002",
+   "name": "国際ワークショップ1A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0810100/S0810101/S0810102",
+   "name": "国際ワークショップ2A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0810200/S0810201/S0810202",
+   "name": "国際ワークショップ3A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0810300/S0810301/S0810302",
+   "name": "国際ワークショップ4A",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0813000/S0813001/S0813002",
+   "name": "国際ワークショップ1B",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0813100/S0813101/S0813102",
+   "name": "国際ワークショップ2B",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0813200/S0813201/S0813202",
+   "name": "国際ワークショップ3B",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0813300/S0813301/S0813302",
+   "name": "国際ワークショップ4B",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0816000/S0816000/S0816000",
+   "name": "インターンシップ1",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0819000/S0819000/S0819000",
+   "name": "インターンシップ2",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0822000/S0822001/S0822002",
+   "name": "海外建築研修",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0825000",
+   "name": "国内プロジェクト1",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0828000",
+   "name": "国内プロジェクト2",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0831000",
+   "name": "国内プロジェクト3",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0834000",
+   "name": "国内プロジェクト4",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0853000",
+   "name": "イタリア・ローマ建築実習A",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0854000",
+   "name": "イタリア・ローマ建築実習B",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0837000/S0837002",
+   "name": "韓国建築実習A",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0840000/S0840002",
+   "name": "韓国建築実習B",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0843000/S0843002",
+   "name": "フランス建築実習A",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0846000/S0846002",
+   "name": "フランス建築実習B",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0849000/S0849002",
+   "name": "イタリア・ラクイラ建築実習A",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0852000/S0852002",
+   "name": "イタリア・ラクイラ建築実習B",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0855000",
+   "name": "ロシア建築実習A",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0858000",
+   "name": "ロシア建築実習B",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 3,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0861000",
+   "name": "プロジェクト研究1",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0864000",
+   "name": "プロジェクト研究2",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0867000",
+   "name": "プロジェクト研究3",
+   "cat": "専門",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": [
+    "AP"
+   ]
+  },
+  {
+   "no": "S0871000/S0871001/S0871002",
+   "name": "国内ワークショップ1",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0872000/S0872001/S0872002",
+   "name": "国内ワークショップ2",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0873000/S0873001/S0873002",
+   "name": "国内ワークショップ3",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  },
+  {
+   "no": "S0874000/S0874001/S0874002",
+   "name": "国内ワークショップ4",
+   "cat": "専門",
+   "cr": 1,
+   "yr": 1,
+   "sem": "",
+   "req": "elective",
+   "courses": [
+    "AP",
+    "SA",
+    "UA"
+   ]
+  }
+ ]
+}

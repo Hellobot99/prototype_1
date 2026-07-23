@@ -1,0 +1,1848 @@
+{
+ "university": "芝浦工業大学 デザイン工学部 デザイン工学科",
+ "year": 2024,
+ "graduation": {
+  "credits": 124,
+  "gpa": 2.0,
+  "thesis_start": "3年終了時100単位",
+  "promotion_stop": "2年終了時54単位未満"
+ },
+ "req_legend": {
+  "required": "必修",
+  "elective_required": "選択必修",
+  "elective": "選択",
+  "free": "自由"
+ },
+ "courses": [
+  {
+   "no": "10017004",
+   "name": "ダイバーシティ入門",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40072600",
+   "name": "芝浦工業大学通論",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40211100",
+   "name": "消費者行動論",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40211200",
+   "name": "マーケティング概論",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40211300",
+   "name": "デジタルプレゼンテーション",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40076100",
+   "name": "Japanese LanguageⅠ",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "40076200",
+   "name": "Japanese LanguageⅡ",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "40076300",
+   "name": "Japanese LanguageⅢ",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "40076400",
+   "name": "Japanese LanguageⅣ",
+   "cat": "全学共通科目",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "40003000",
+   "name": "哲学（存在と心）",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40003700",
+   "name": "工学倫理",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40005500",
+   "name": "民俗学",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40049000",
+   "name": "環境学",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40075000",
+   "name": "科学技術論",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40075450",
+   "name": "近現代史",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40061200",
+   "name": "体育講義",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40062300",
+   "name": "体育実技",
+   "cat": "共通教養科目・人文系",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40006400",
+   "name": "比較文化論",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40050900",
+   "name": "エコロジー",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40075200",
+   "name": "哲学（知識と言語）",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40075350",
+   "name": "美学・美術史",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40075500",
+   "name": "現代文芸論",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40216000",
+   "name": "Engineering Ethics",
+   "cat": "共通教養科目・人文系",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40046200",
+   "name": "経済学",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40024400",
+   "name": "社会学／社会情報学",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40025500",
+   "name": "行動科学",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40041800",
+   "name": "法学",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40042700",
+   "name": "日本国憲法",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40048500",
+   "name": "政治と国際関係",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "10019004",
+   "name": "アントレプレナーシップ入門",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "10023004",
+   "name": "アントレプレナーシップ応用",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40078400",
+   "name": "地域志向型デザイン",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40078500",
+   "name": "地域創生デザイン実習",
+   "cat": "共通教養科目・社会科学系",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "free",
+   "courses": "ALL"
+  },
+  {
+   "no": "40073600",
+   "name": "キャリアプラン",
+   "cat": "共通教養科目・キャリア系",
+   "cr": 1,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40074700",
+   "name": "キャリア・デザイン",
+   "cat": "共通教養科目・キャリア系",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40077000",
+   "name": "海外工学英語研修",
+   "cat": "共通教養科目・キャリア系",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40078100",
+   "name": "グローバルPBL1",
+   "cat": "共通教養科目・キャリア系",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40078200",
+   "name": "グローバルPBL2",
+   "cat": "共通教養科目・キャリア系",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40078300",
+   "name": "グローバルPBL3",
+   "cat": "共通教養科目・キャリア系",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40096010",
+   "name": "教育原論",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40096040",
+   "name": "教育心理学",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40096060",
+   "name": "教育の近現代史",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40096080",
+   "name": "人間関係論",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4041700",
+   "name": "教職論",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4045800",
+   "name": "特別活動の指導法",
+   "cat": "共通教養科目・教育系",
+   "cr": 1,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4060700",
+   "name": "道徳の理論及び指導法",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4060800",
+   "name": "総合的な学習の時間の指導法",
+   "cat": "共通教養科目・教育系",
+   "cr": 1,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4070600",
+   "name": "工業科指導法1",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4071400",
+   "name": "工業科指導法2",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4260300",
+   "name": "教育課程論",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4012810",
+   "name": "教育の方法及び技術",
+   "cat": "共通教養科目・教育系",
+   "cr": 1,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4012820",
+   "name": "教育におけるICT活用",
+   "cat": "共通教養科目・教育系",
+   "cr": 1,
+   "yr": 2,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40096050",
+   "name": "教育社会学",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4025000",
+   "name": "生徒・進路指導論",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4026800",
+   "name": "教育相談論",
+   "cat": "共通教養科目・教育系",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Z4060900",
+   "name": "特別支援教育論",
+   "cat": "共通教養科目・教育系",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40091300",
+   "name": "基礎中国語",
+   "cat": "共通教養科目・外国語（その他）",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40092400",
+   "name": "中国語表現",
+   "cat": "共通教養科目・外国語（その他）",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40081700",
+   "name": "総合英語",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40082600",
+   "name": "英語表現",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40083500",
+   "name": "英語講読1",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40084400",
+   "name": "英語講読2",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40086200",
+   "name": "ライティング",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40087500",
+   "name": "テクニカルイングリッシュ",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40088000",
+   "name": "英語プレゼンテーション",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40087000",
+   "name": "ビジネス英語",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40095000",
+   "name": "英語圏の言語と文化",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40095500",
+   "name": "英語圏の言語と文化（短期プログラム）",
+   "cat": "共通教養科目・外国語（英語）",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40101600",
+   "name": "線形代数1",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "40105200",
+   "name": "微積分学1",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211100",
+   "name": "統計学基礎",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 1,
+   "yr": 1,
+   "sem": "後",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "40206000",
+   "name": "数理計画法",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211110",
+   "name": "数理モデリング",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40113040",
+   "name": "数値解析",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40047200",
+   "name": "計量経済学",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40215080",
+   "name": "シミュレーション工学",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0071030",
+   "name": "マーケティング・リサーチ",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0150800",
+   "name": "データマイニング",
+   "cat": "データ・サイエンス科目・データ解析",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211200",
+   "name": "データ・サイエンス入門",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 1,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "40121400",
+   "name": "基礎力学",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40126900",
+   "name": "集合と論理",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40103400",
+   "name": "線形代数2",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40107000",
+   "name": "微積分学2",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40124700",
+   "name": "物理学（電磁気）",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211210",
+   "name": "工業力学・静力学",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211220",
+   "name": "データサイエンスリテラシー",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 1,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211230",
+   "name": "工業力学・動力学",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211240",
+   "name": "データ・サイエンス演習",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 1,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40110700",
+   "name": "ベクトル解析",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0211250",
+   "name": "フーリエ変換",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0073090",
+   "name": "ゲーム理論",
+   "cat": "データ・サイエンス科目・データ・サイエンス",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0002600",
+   "name": "ものづくり概論",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0027100",
+   "name": "デザイン基礎表現演習",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0212100",
+   "name": "構想デザイン入門",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0006000",
+   "name": "構想デザイン論",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "40021100",
+   "name": "認知心理学入門",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0004800",
+   "name": "デザイン史",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0102000",
+   "name": "ユニバーサルデザイン",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40026600",
+   "name": "人間工学",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 1,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0104600",
+   "name": "インターフェースデザイン",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 1,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0106400",
+   "name": "サービスデザイン",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0212110",
+   "name": "論文作成演習",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0107100",
+   "name": "デザインマネージメント",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0150400",
+   "name": "プロモーション計画論",
+   "cat": "デザイン科目・デザインリテラシー",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40022200",
+   "name": "組織心理学",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40048100",
+   "name": "経営学",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40071400",
+   "name": "プレゼンテーション",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40004600",
+   "name": "企業倫理",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0070400",
+   "name": "マーケティング",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0068600",
+   "name": "財務会計",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0074070",
+   "name": "ビジネスモデル論",
+   "cat": "デザイン科目・ビジネスメイキング",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0027200",
+   "name": "造形基礎演習",
+   "cat": "エンジニアリング科目・プロダクトデザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective_required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213100",
+   "name": "構成基礎演習",
+   "cat": "エンジニアリング科目・プロダクトデザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0022300",
+   "name": "プロダクトデザイン",
+   "cat": "エンジニアリング科目・プロダクトデザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0108900",
+   "name": "プロダクトデザイン演習1",
+   "cat": "エンジニアリング科目・プロダクトデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0109700",
+   "name": "プロダクトデザイン演習2",
+   "cat": "エンジニアリング科目・プロダクトデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0103800",
+   "name": "エモーショナルデザイン",
+   "cat": "エンジニアリング科目・プロダクトデザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40207000",
+   "name": "SDGs入門",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0026900",
+   "name": "3DCAD",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0027800",
+   "name": "機構設計学",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213200",
+   "name": "有限要素法",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213210",
+   "name": "基礎熱力学",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213220",
+   "name": "基礎流体力学",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213230",
+   "name": "熱流体シミュレーション",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213240",
+   "name": "機械要素設計",
+   "cat": "エンジニアリング科目・機能デザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213300",
+   "name": "基礎製図演習",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective_required",
+   "courses": "ALL"
+  },
+  {
+   "no": "40125800",
+   "name": "化学",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40213020",
+   "name": "材料力学",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0145300",
+   "name": "材料工学",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213310",
+   "name": "ものづくり実習",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40209700",
+   "name": "機械力学",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0063100",
+   "name": "金型工学",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0066800",
+   "name": "生産加工学",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213320",
+   "name": "エコマテリアル",
+   "cat": "エンジニアリング科目・メカニカルデザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40302000",
+   "name": "情報表現基礎演習",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective_required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0154000",
+   "name": "UXデザイン",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0154400",
+   "name": "UXデザイン演習",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0007100",
+   "name": "色彩論／Color Theory",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0153200",
+   "name": "コンテンツデザイン",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0153600",
+   "name": "コンテンツデザイン演習",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40303000",
+   "name": "情報デザイン論／Information Design",
+   "cat": "エンジニアリング科目・UI/UXデザイン",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40203300",
+   "name": "情報処理演習",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective_required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0201100",
+   "name": "プログラミング1",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0201200",
+   "name": "プログラミング2",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0045000",
+   "name": "コンピュータアーキテクチャ",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0122600",
+   "name": "データ構造とアルゴリズム",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0123400",
+   "name": "オブジェクト指向プログラミング",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0124200",
+   "name": "オブジェクト指向プログラミング演習",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 1,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0127700",
+   "name": "ソフトウェア設計論",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0128500",
+   "name": "ソフトウェア設計論演習",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0155600",
+   "name": "要求工学",
+   "cat": "エンジニアリング科目・ソフトウェア",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40205100",
+   "name": "電気回路",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 1,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "40212040",
+   "name": "基礎エレクトロニクス",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0041600",
+   "name": "ディジタル回路",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 2,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0156400",
+   "name": "ロボット製作演習",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213600",
+   "name": "計測工学",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 1,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0213610",
+   "name": "制御工学",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 1,
+   "yr": 2,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0240010",
+   "name": "信号処理",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 1,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0133050",
+   "name": "モーションコントロール",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0156000",
+   "name": "人工知能",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0132070",
+   "name": "ロボティクス",
+   "cat": "エンジニアリング科目・ロボティクス",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170001",
+   "name": "プロジェクト演習1",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170002",
+   "name": "プロジェクト演習2",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170003",
+   "name": "プロジェクト演習3",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170004",
+   "name": "プロジェクト演習4",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170005",
+   "name": "プロジェクト演習5",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170006",
+   "name": "プロジェクト演習6",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170007",
+   "name": "プロジェクト演習7",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170008",
+   "name": "プロジェクト演習8",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170009",
+   "name": "プロジェクト演習9",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170010",
+   "name": "プロジェクト演習10",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170011",
+   "name": "プロジェクト演習11",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170012",
+   "name": "プロジェクト演習12",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170013",
+   "name": "プロジェクト演習13",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170014",
+   "name": "プロジェクト演習14",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170015",
+   "name": "プロジェクト演習15",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170016",
+   "name": "プロジェクト演習16",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170017",
+   "name": "プロジェクト演習17",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170018",
+   "name": "プロジェクト演習18",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0170019",
+   "name": "プロジェクト演習19",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "前後",
+   "req": "elective",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0214000",
+   "name": "プロジェクト研究",
+   "cat": "プロジェクト科目",
+   "cr": 2,
+   "yr": 3,
+   "sem": "後",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0214010",
+   "name": "総合プロジェクト1",
+   "cat": "プロジェクト科目",
+   "cr": 6,
+   "yr": 4,
+   "sem": "前後",
+   "req": "required",
+   "courses": "ALL"
+  },
+  {
+   "no": "Y0214020",
+   "name": "総合プロジェクト2",
+   "cat": "プロジェクト科目",
+   "cr": 6,
+   "yr": 4,
+   "sem": "前後",
+   "req": "required",
+   "courses": "ALL"
+  }
+ ]
+}
